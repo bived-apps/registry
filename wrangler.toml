@@ -1,0 +1,16 @@
+# Deploy: npx wrangler d1 create bive-registry  (paste the database_id below)
+#         npx wrangler d1 execute bive-registry --remote --file schema.sql
+#         npx wrangler deploy
+name = "bive-registry"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bive-registry"
+database_id = "82ea305d-72a7-469d-8e7b-99ad7e04164f"
+
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
+fallthrough = true

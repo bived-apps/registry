@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bive Help</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* One column: a header with the model, two tabs (Help, Supervisor), a thread, a composer. */
+:root {
+  --bg: #f6f7f4; --panel: #ffffff; --fg: #1d211c; --muted: #5d6659; --line: #d9ddd4;
+  --accent: #2f6b3a; --accent-fg: #ffffff; --warn: #8a5a00; --bad: #a12d2d;
+  --sans: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #141713; --panel: #1c201b; --fg: #e4e8e0; --muted: #9aa494; --line: #333a30;
+          --accent: #7fbf87; --accent-fg: #0f1a10; --warn: #e0b45a; --bad: #e88b8b; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 var(--sans); }
+.wrap { max-width: 860px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; gap: 12px;
+        padding-block: 16px; padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+h1 { font-size: 20px; margin: 0; font-weight: 600; }
+h1 span { color: var(--muted); font-weight: 400; }
+.model { display: flex; gap: 8px; align-items: center; margin-left: auto; flex-wrap: wrap; }
+select, button, textarea { font: inherit; color: var(--fg); }
+select { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; max-width: 100%; }
+button { border: 1px solid var(--accent); background: var(--accent); color: var(--accent-fg); border-radius: 6px;
+         padding: 7px 14px; cursor: pointer; font-weight: 600; }
+button.ghost { background: transparent; color: var(--accent); }
+button:disabled { opacity: .5; cursor: default; }
+button:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.status { font: 13px var(--mono); color: var(--muted); min-height: 1.4em; }
+.status.bad { color: var(--bad); }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { background: none; border: none; border-bottom: 2px solid transparent; border-radius: 0; color: var(--muted);
+               padding: 8px 12px; font-weight: 600; }
+.tabs button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+.gates { display: flex; flex-wrap: wrap; gap: 6px; }
+.gates label { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; cursor: pointer; font-size: 13px; }
+.gates input { margin: 0 6px 0 0; }
+.hint { color: var(--muted); font-size: 13px; margin: 0; }
+.thread { flex: 1; min-height: 160px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+.msg { max-width: 100%; min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg.user { align-self: flex-end; background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+            padding: 8px 12px; max-width: 85%; }
+.msg.bot { font-size: 15px; }
+.msg.bot code, .msg code { font-family: var(--mono); font-size: 13px; }
+form { display: flex; gap: 8px; align-items: flex-end; }
+textarea { flex: 1; min-width: 0; min-height: 52px; max-height: 40vh; resize: vertical; background: var(--panel);
+           border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+footer { font-size: 12px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .thread { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Bive <span>help</span></h1>
+    <div class="model">
+      <select id="model" aria-label="Model"></select>
+      <button id="load" type="button">Load model</button>
+    </div>
+  </header>
+  <div class="status" id="status" role="status">The model runs in this browser (WebGPU). Nothing you type leaves this machine.</div>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-help" aria-selected="true" type="button">Help</button>
+    <button role="tab" id="tab-sup" aria-selected="false" type="button">Supervisor assistant</button>
+  </div>
+  <div id="sup-tools" hidden>
+    <div class="gates" role="radiogroup" aria-label="Gate">
+      <label><input type="radio" name="gate" value="split" checked>Gate 1: the split of an epic</label>
+      <label><input type="radio" name="gate" value="failed">Gate 2: a delegate failed twice</label>
+      <label><input type="radio" name="gate" value="main">Gate 3: the pull request to main</label>
+    </div>
+    <p class="hint">Paste the coordinator's card or the pull request text. You get a checklist and a proposed verdict; the decision stays yours.</p>
+  </div>
+
+  <div class="thread" id="thread" aria-live="polite"></div>
+
+  <form id="form">
+    <textarea id="input" placeholder="Ask about Bive: roles, briefs, worktrees, MCP over SSH, the token ratio…" disabled></textarea>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <button id="send" type="submit" disabled>Send</button>
+      <button id="stop" type="button" class="ghost" disabled>Stop</button>
+    </div>
+  </form>
+  <footer>Free, local model through <a href="https://github.com/mlc-ai/web-llm">WebLLM</a>. The first load downloads the model (about 1 to 2 GB) once; then it is cached. Bive's docs are read from GitHub at load time.</footer>
+</div>
+
+<script type="module">
+import * as webllm from "https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.85/+esm";
+
+const RAW = "https://raw.githubusercontent.com/jcherfils/bive/main/";
+const DOCS = { help: ["README.md", "AGENTS.md", ".bive/prompts/COORDINATOR.md", ".bive/prompts/DELEGATE.md",
+                      ".bive/prompts/SUPERVISOR.md", ".bive/templates/brief.md", ".bive/templates/report.md"],
+               sup: ["AGENTS.md", ".bive/prompts/SUPERVISOR.md", ".bive/templates/report.md"] };
+const MODELS = ["Qwen2.5-3B-Instruct-q4f16_1-MLC", "Qwen2.5-1.5B-Instruct-q4f16_1-MLC",
+                "Llama-3.2-3B-Instruct-q4f16_1-MLC", "Phi-3.5-mini-instruct-q4f16_1-MLC"];
+const GATES = {
+  split: "Gate 1, the split of an epic into issues. For each issue check: a goal, files to read, steps, a done-when, tests; it fits one delegate session; no two issues running at once touch the same files.",
+  failed: "Gate 2, a delegate failed twice on an issue. Check: what failed each time and why, whether the brief was wrong or the task too large. Propose one of: redo with a clearer brief, split, drop, or the coordinator does it.",
+  main: "Gate 3, the pull request from the integration branch to main. Check: a summary of what is done, what is left, the full checks run and their result, HANDOFF.md and ROADMAP.md updated, nothing that breaks the project's rules (privacy, compatibility, licences).",
+};
+const $ = (id) => document.getElementById(id);
+let engine = null, mode = "help", docs = { help: "", sup: "" }, history = { help: [], sup: [] };
+
+const known = new Set(webllm.prebuiltAppConfig.model_list.map((m) => m.model_id));
+for (const id of MODELS.filter((m) => known.has(m))) $("model").add(new Option(id.replace(/-q4f16_1-MLC$/, ""), id));
+$("model").value = known.has(MODELS[1]) ? MODELS[1] : $("model").value;
+
+const status = (text, bad = false) => { $("status").textContent = text; $("status").classList.toggle("bad", bad); };
+if (!navigator.gpu) status("This browser has no WebGPU: use a recent Chrome, Edge or Safari on a computer.", true);
+
+async function loadDocs() {
+  for (const key of Object.keys(DOCS)) {
+    const parts = await Promise.all(DOCS[key].map(async (f) => {
+      const r = await fetch(RAW + f);
+      return r.ok ? `--- ${f} ---\n${await r.text()}` : "";
+    }));
+    docs[key] = parts.join("\n\n");
+  }
+}
+
+function system() {
+  if (mode === "help") return "You answer questions about Bive, a repository template for building software with LLM agents in three roles. Use only the documentation below; if it does not say, answer that it does not. Be short and concrete, cite the file. Answer in the language of the question.\n\n" + docs.help;
+  const gate = document.querySelector("input[name=gate]:checked").value;
+  return "You assist the supervisor of a Bive project (the owner) at a coordinator's gate. You never decide: you check and propose. " + GATES[gate] + "\nAnswer in this shape, in the language of the pasted text:\nChecklist: one line per criterion, marked OK, MISSING or UNSURE, with the reason.\nProposed verdict: accept, or ask for changes (say which).\nQuestions for the coordinator: at most three.\nRules of the project:\n\n" + docs.sup;
+}
+
+function add(role, text) {
+  const div = document.createElement("div");
+  div.className = "msg " + role;
+  div.textContent = text;
+  $("thread").append(div);
+  $("thread").scrollTop = $("thread").scrollHeight;
+  return div;
+}
+
+$("load").onclick = async () => {
+  $("load").disabled = true;
+  try {
+    status("Reading Bive's docs from GitHub…");
+    await loadDocs();
+    engine = await webllm.CreateMLCEngine($("model").value, {
+      initProgressCallback: (p) => status(p.text),
+    }, { context_window_size: 8192 });
+    status("Ready: " + $("model").selectedOptions[0].text + ", local. Nothing you type leaves this machine.");
+    $("input").disabled = $("send").disabled = false;
+    $("input").focus();
+  } catch (e) {
+    status("Could not load the model: " + (e?.message || e), true);
+  } finally {
+    $("load").disabled = false;
+    $("load").textContent = "Change model";
+  }
+};
+
+for (const [id, m] of [["tab-help", "help"], ["tab-sup", "sup"]]) $(id).onclick = () => {
+  mode = m;
+  $("tab-help").setAttribute("aria-selected", m === "help");
+  $("tab-sup").setAttribute("aria-selected", m === "sup");
+  $("sup-tools").hidden = m !== "sup";
+  $("input").placeholder = m === "help" ? "Ask about Bive: roles, briefs, worktrees, MCP over SSH, the token ratio…"
+                                        : "Paste the coordinator's card or the pull request text here.";
+  $("thread").replaceChildren(...history[m].map((h) => { const d = document.createElement("div");
+    d.className = "msg " + (h.role === "user" ? "user" : "bot"); d.textContent = h.content; return d; }));
+};
+
+$("stop").onclick = () => engine?.interruptGenerate();
+
+$("input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("form").requestSubmit(); }
+});
+
+$("form").onsubmit = async (e) => {
+  e.preventDefault();
+  const text = $("input").value.trim();
+  if (!text || !engine) return;
+  $("input").value = "";
+  const h = history[mode];
+  if (mode === "sup") h.length = 0;               // each gate check stands alone
+  h.push({ role: "user", content: text });
+  add("user", text);
+  const out = add("bot", "…");
+  $("send").disabled = true; $("stop").disabled = false;
+  try {
+    const stream = await engine.chat.completions.create({
+      messages: [{ role: "system", content: system() }, ...h.slice(-6)], stream: true, temperature: 0.2,
+    });
+    let answer = "";
+    for await (const chunk of stream) {
+      answer += chunk.choices[0]?.delta?.content || "";
+      out.textContent = answer;
+      $("thread").scrollTop = $("thread").scrollHeight;
+    }
+    h.push({ role: "assistant", content: answer });
+  } catch (err) {
+    out.textContent = "Error: " + (err?.message || err) + ". A shorter question, or a model with more memory, may help.";
+  } finally {
+    $("send").disabled = false; $("stop").disabled = true;
+  }
+};
+</script>
+</body>
+</html>
