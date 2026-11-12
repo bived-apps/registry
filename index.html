@@ -248,7 +248,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
 
 async function load() {
   try {
-    const r = await fetch("/v1/stats");
+    const r = await fetch("https://bive-registry.bive.workers.dev/v1/stats");
     const d = await r.json();
     document.getElementById("tiles").innerHTML = [
       [d.projects, "projects"], [d.sessions, "sessions"], [fmt(d.human), "human tokens"], [fmt(d.agent), "agent tokens"],
