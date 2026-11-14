@@ -1,6 +1,8 @@
 # Deploy: npx wrangler d1 create bive-registry  (paste the database_id below)
 #         npx wrangler d1 execute bive-registry --remote --file schema.sql
 #         npx wrangler deploy
+# Trouble: a "403 Attention Required | Cloudflare" or an authentication error means wrangler lost its login, not a
+#         model provider refusing: npx wrangler whoami, then npx wrangler login, then retry (bived-apps/bive#261).
 name = "bive-registry"
 main = "worker.js"
 compatibility_date = "2026-10-01"
