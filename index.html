@@ -48,17 +48,17 @@ td { font-family: var(--mono); font-size: 13px; }
 .scale i { width: 60px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--warn), var(--bad)); }
 .hint { font-size: 13px; color: var(--muted); }
 .role-glyph { width: 16px; height: 16px; vertical-align: middle; margin-right: 4px; }
-.tagline { font-size: 13px; color: var(--muted); }
+.tagline { font-size: 17px; font-weight: 700; color: var(--fg); }
 </style>
 </head>
 <body>
 <main>
-  <header style="display:flex;flex-direction:column;gap:8px">
+  <header style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
     <img src="assets/wordmark.svg" height="72" alt="Bive">
+    <p class="tagline">Agents write, you decide.</p>
     <p>Registry: projects built with Bive</p>
     <p>Projects built with <a href="https://github.com/bived-apps/bive">Bive</a> whose owners opted in: at the end of each session a
       project sends its human tokens, its agent tokens, its code size, how many writes its guard refused, and which agents and LLMs produced the tokens, nothing else. No name, path, text or IP is kept. A project is listed once it has reported three sessions on two different days.</p>
-    <p class="tagline">Agents write, you decide.</p>
     <div class="status" id="status">Loading…</div>
   </header>
 
