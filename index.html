@@ -188,7 +188,7 @@ function project(x, y, z, W, H) {
 }
 function draw() {
   const dpr = devicePixelRatio || 1, W = canvas.clientWidth, H = canvas.clientHeight;
-  if (canvas.width !== W * dpr) { canvas.width = W * dpr; canvas.height = H * dpr; }
+  if (canvas.width !== Math.round(W * dpr) || canvas.height !== Math.round(H * dpr)) { canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); }
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, W, H);
   const P = (x, y, z) => project(x, y, z, W, H);
@@ -200,7 +200,7 @@ function draw() {
     const A = P(...a), B = P(...b);
     ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke();
   }
-  ctx.fillStyle = css("--muted"); ctx.font = "11px " + css("--mono").split(",")[0];
+  ctx.fillStyle = css("--muted"); ctx.font = "12px " + css("--sans");
   const label = (t, x, y, z) => { const q = P(x, y, z); ctx.fillText(t, q[0] + 4, q[1] + 4); };
   label("human " + fmt(cube.max[0]) + " →", 1, -1, -1);
   label("agent " + fmt(cube.max[1]), -1, 1, -1);
@@ -222,7 +222,7 @@ function draw() {
   for (const d of pts) {
     ctx.globalAlpha = d.alpha; ctx.fillStyle = colour(d.v);
     ctx.beginPath(); ctx.arc(d.q[0], d.q[1], Math.max(3, d.q[3] / 22), 0, 7); ctx.fill();
-    ctx.globalAlpha = 1; ctx.fillStyle = css("--fg"); ctx.fillText("#" + (d.i + 1), d.q[0] + 7, d.q[1] - 6);
+    ctx.globalAlpha = 1; ctx.fillStyle = css("--fg"); ctx.font = "600 12px " + css("--sans"); ctx.fillText("#" + (d.i + 1), d.q[0] + 7, d.q[1] - 6);
   }
   const day = cube.days[Math.min(cube.days.length - 1, Math.round(cube.t))];
   document.getElementById("when").textContent = day || "no data yet";
