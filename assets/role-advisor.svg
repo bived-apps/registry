@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-labelledby="t d" fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <title id="t">Advisor</title>
+  <desc id="d">A magnifier: the advisor reads and answers a question, then stops.</desc>
+  <circle cx="10" cy="10" r="6"/>
+  <path d="M14.5 14.5L20 20"/>
+</svg>

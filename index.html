@@ -4,18 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bive Registry</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* One column: totals, the daily chart, the anonymous projects table. Refreshed every minute. */
 :root {
-  --bg: #f6f7f4; --panel: #ffffff; --fg: #1d211c; --muted: #5d6659; --line: #d9ddd4;
-  --human: #b5651d; --agent: #2f6b3a; --warn: #c48a00; --bad: #b3261e;
-  --sans: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --bg: #F7F5F0; --panel: #FFFFFF; --fg: #1F2430; --muted: #5B6270; --line: #E5E2DA;
+  --human: #B45309; --agent: #6D28D9; --warn: #0F766E; --bad: #B45309;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root { --bg: #141713; --panel: #1c201b; --fg: #e4e8e0; --muted: #9aa494; --line: #333a30;
-          --human: #e0a060; --agent: #7fbf87; --warn: #e8c15a; --bad: #f08a80; color-scheme: dark; }
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 var(--sans); }
@@ -24,10 +20,12 @@ main { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; 
 h1 { margin: 0; font-size: 24px; text-wrap: balance; }
 h2 { margin: 0 0 8px; font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
 p { margin: 0; max-width: 68ch; color: var(--muted); }
-.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
-.tile { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
-.tile b { display: block; font: 600 22px var(--mono); font-variant-numeric: tabular-nums; }
-.tile span { font-size: 13px; color: var(--muted); }
+.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.tile { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-width: 0; }
+.tile b { display: block; font: 600 32px var(--mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.tile span { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+@media (max-width: 640px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .tile b { font-size: 24px; } }
 .chart { overflow-x: auto; }
 svg text { fill: var(--muted); font: 11px var(--mono); }
 .legend { display: flex; gap: 16px; font-size: 13px; color: var(--muted); }
@@ -49,14 +47,18 @@ td { font-family: var(--mono); font-size: 13px; }
                    border-radius: 6px; padding: 5px 12px; cursor: pointer; }
 .controls button:focus-visible, .controls input:focus-visible { outline: 2px solid var(--agent); outline-offset: 2px; }
 .scale { display: flex; gap: 6px; align-items: center; }
-.scale i { width: 60px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--agent), var(--warn), var(--bad)); }
-.hint { font-size: 13px; }
+.scale i { width: 60px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--warn), var(--bad)); }
+.hint { font-size: 13px; color: var(--muted); }
+.role-glyph { width: 16px; height: 16px; vertical-align: middle; margin-right: 4px; }
+.tagline { font-size: 17px; font-weight: 700; color: var(--fg); }
 </style>
 </head>
 <body>
 <main>
-  <header style="display:flex;flex-direction:column;gap:8px">
-    <h1>Bive Registry</h1>
+  <header style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+    <img src="assets/wordmark.svg" height="72" alt="Bive">
+    <p class="tagline">Agents write, you decide.</p>
+    <p>Registry: projects built with Bive</p>
     <p>Projects built with <a href="https://github.com/bived-apps/bive">Bive</a> whose owners opted in: at the end of each session a
       project sends its human tokens, its agent tokens, its code size, how many writes its guard refused, and which agents and LLMs produced the tokens, nothing else. No name, path, text or IP is kept. A project is listed once it has reported three sessions on two different days.</p>
     <div class="status" id="status">Loading…</div>
@@ -64,7 +66,7 @@ td { font-family: var(--mono); font-size: 13px; }
 
   <section class="tiles" id="tiles"></section>
 
-  <section>
+  <section id="cubeSection">
     <h2>Cascade in five dimensions</h2>
     <p class="hint">Each app is a point. Human tokens run right, agent tokens up, lines of code in depth, the colour is its
       violations, and the slider is time: press Play to watch the apps fall in as they start and drift as they grow.
@@ -77,6 +79,15 @@ td { font-family: var(--mono); font-size: 13px; }
       <span class="scale">violations 0 <i></i> many</span>
       <select id="llm" aria-label="Main LLM"><option value="">All LLMs</option></select>
     </div>
+  </section>
+
+  <section id="simpleProjects" hidden>
+    <h2>Projects</h2>
+    <div class="table"><table>
+      <thead><tr><th>#</th><th>Sessions</th><th>Human tokens</th><th>Agent tokens</th><th>Lines of code</th><th>Violations</th></tr></thead>
+      <tbody id="simpleRows"></tbody>
+    </table></div>
+    <p class="hint">The cube appears from five projects.</p>
   </section>
 
   <section>
@@ -107,13 +118,14 @@ const fmt = (n) => n == null ? "—" : n >= 1e9 ? (n / 1e9).toFixed(1) + " G" : 
 const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const ratio = (h, a) => h ? "1 : " + Math.round(a / h) : "—";
 const perLine = (a, l) => l ? (a / l).toFixed(1) : "—";
+const roleColor = (r) => r === "coordinator" ? "#B45309" : r === "delegate" ? "#6D28D9" : r === "advisor" ? "#0F766E" : "#1F2430";
 
 function chart(days) {
   const W = Math.max(600, days.length * 10), H = 180, pad = 36;
   const max = Math.max(1, ...days.map((d) => d.agent + d.human));
   const bw = Math.min(14, (W - pad) / Math.max(1, days.length));
   const y = (v) => H - 20 - (v / max) * (H - 30);
-  let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tokens per day">`;
+  let s = `<svg width="100%" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tokens per day" preserveAspectRatio="none">`;
   for (const t of [0, max / 2, max]) s += `<line x1="${pad}" x2="${W}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="0" y="${y(t) + 4}">${fmt(Math.round(t))}</text>`;
   days.forEach((d, i) => {
     const x = pad + i * bw;
@@ -138,7 +150,7 @@ function mix(a, b, k) {
   return "rgb(" + A.map((v, i) => Math.round(v + (B[i] - v) * k)).join(",") + ")";
 }
 function colour(v) {
-  if (!v) return css("--agent");
+  if (!v) return css("--warn");
   const k = Math.min(1, Math.log10(1 + v) / Math.log10(1 + cube.max[3]));
   return mix(css("--warn"), css("--bad"), k);
 }
@@ -260,10 +272,29 @@ async function load() {
     sel.replaceChildren(new Option("All LLMs", ""), ...llms.map((m) => new Option(m, m)));
     sel.value = llms.includes(keep) ? keep : "";
     cube.filter = sel.value;
-    setCube(d.paths || []);
-    document.getElementById("models").innerHTML = (d.models || []).map((m) => `<tr><td>${esc(m.agent)}</td>
+    const n = (d.rows || []).length;
+    const cubeSection = document.getElementById("cubeSection");
+    const simple = document.getElementById("simpleProjects");
+    if (n >= 5) {
+      cubeSection.hidden = false;
+      simple.hidden = true;
+      setCube(d.paths || []);
+    } else {
+      cubeSection.hidden = true;
+      simple.hidden = false;
+      document.getElementById("simpleRows").innerHTML = (d.rows || []).map((p, i) => `<tr><td>#${i + 1}</td>
+        <td>${p.sessions}</td><td>${fmt(p.human)}</td><td>${fmt(p.agent)}</td><td>${fmt(p.loc)}</td><td>${p.violations}</td></tr>`).join("") || "<tr><td>—</td></tr>";
+    }
+    const roleOf = (a) => ["coordinator", "delegate", "advisor"].includes(String(a).toLowerCase()) ? String(a).toLowerCase() : null;
+    document.getElementById("models").innerHTML = (d.models || []).map((m) => {
+      const role = roleOf(m.agent);
+      const agentCell = role
+        ? `<img class="role-glyph" src="assets/role-${role}.svg" width="16" height="16" alt="${role}"><span style="color:${roleColor(role)}">${esc(role)}</span>`
+        : `other (${esc(m.agent)})`;
+      return `<tr><td>${agentCell}</td>
       <td>${esc(m.model)}</td><td>${fmt(m.tokens)}</td><td>${m.projects}</td><td>${m.seconds ?? "—"}</td>
-      <td>${m.tokens_per_s ?? "—"}</td><td>${m.in_per_out ?? "—"}</td></tr>`).join("") || "<tr><td>—</td></tr>";
+      <td>${m.tokens_per_s ?? "—"}</td><td>${m.in_per_out ?? "—"}</td></tr>`;
+    }).join("") || "<tr><td>—</td></tr>";
     document.getElementById("chart").innerHTML = d.days.length ? chart(d.days) : "<p>No session reported yet.</p>";
     document.getElementById("rows").innerHTML = d.rows.map((p, i) => `<tr><td>#${i + 1}</td><td>${p.since}</td>
       <td>${p.sessions}</td><td>${fmt(p.human)}</td><td>${fmt(p.agent)}</td><td>${ratio(p.human, p.agent)}</td>
