@@ -87,7 +87,6 @@ td { font-family: var(--mono); font-size: 13px; }
       <thead><tr><th>#</th><th>Sessions</th><th>Human tokens</th><th>Agent tokens</th><th>Lines of code</th><th>Violations</th></tr></thead>
       <tbody id="simpleRows"></tbody>
     </table></div>
-    <p class="hint">The cube appears from five projects.</p>
   </section>
 
   <section>
@@ -275,7 +274,7 @@ async function load() {
     const n = (d.rows || []).length;
     const cubeSection = document.getElementById("cubeSection");
     const simple = document.getElementById("simpleProjects");
-    if (n >= 5) {
+    if (n >= 1) {
       cubeSection.hidden = false;
       simple.hidden = true;
       setCube(d.paths || []);
