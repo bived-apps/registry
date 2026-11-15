@@ -20,10 +20,11 @@ main { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; 
 h1 { margin: 0; font-size: 24px; text-wrap: balance; }
 h2 { margin: 0 0 8px; font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
 p { margin: 0; max-width: 68ch; color: var(--muted); }
-.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; align-items: stretch; }
+.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .tile { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-width: 0; }
 .tile b { display: block; font: 600 32px var(--mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .tile span { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+@media (max-width: 640px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .tile b { font-size: 24px; } }
 .chart { overflow-x: auto; }
 svg text { fill: var(--muted); font: 11px var(--mono); }
@@ -124,7 +125,7 @@ function chart(days) {
   const max = Math.max(1, ...days.map((d) => d.agent + d.human));
   const bw = Math.min(14, (W - pad) / Math.max(1, days.length));
   const y = (v) => H - 20 - (v / max) * (H - 30);
-  let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tokens per day">`;
+  let s = `<svg width="100%" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tokens per day" preserveAspectRatio="none">`;
   for (const t of [0, max / 2, max]) s += `<line x1="${pad}" x2="${W}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="0" y="${y(t) + 4}">${fmt(Math.round(t))}</text>`;
   days.forEach((d, i) => {
     const x = pad + i * bw;
