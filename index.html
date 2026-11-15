@@ -27,7 +27,7 @@ p { margin: 0; max-width: 68ch; color: var(--muted); }
 @media (max-width: 640px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .tile b { font-size: 24px; } }
 .chart { overflow-x: auto; }
-svg text { fill: var(--muted); font: 11px var(--mono); }
+svg text { fill: var(--muted); font: 12px var(--sans); }
 .legend { display: flex; gap: 16px; font-size: 13px; color: var(--muted); }
 .legend i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 2px; }
 .table { overflow-x: auto; }
@@ -118,13 +118,22 @@ const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
 const ratio = (h, a) => h ? "1 : " + Math.round(a / h) : "—";
 const perLine = (a, l) => l ? (a / l).toFixed(1) : "—";
 const roleColor = (r) => r === "coordinator" ? "#B45309" : r === "delegate" ? "#6D28D9" : r === "advisor" ? "#0F766E" : "#1F2430";
+let chartDays = [];
+function renderChart() {
+  const el = document.getElementById("chart");
+  if (!chartDays.length) { el.innerHTML = "<p>No session reported yet.</p>"; return; }
+  el.innerHTML = chart(chartDays);
+}
 
 function chart(days) {
-  const W = Math.max(600, days.length * 10), H = 180, pad = 36;
+  const box = document.getElementById("chart");
+  const W = (box && box.clientWidth) || 600;
+  const H = (box && box.clientHeight) || 180;
+  const pad = 36;
   const max = Math.max(1, ...days.map((d) => d.agent + d.human));
   const bw = Math.min(14, (W - pad) / Math.max(1, days.length));
   const y = (v) => H - 20 - (v / max) * (H - 30);
-  let s = `<svg width="100%" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tokens per day" preserveAspectRatio="none">`;
+  let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tokens per day">`;
   for (const t of [0, max / 2, max]) s += `<line x1="${pad}" x2="${W}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="0" y="${y(t) + 4}">${fmt(Math.round(t))}</text>`;
   days.forEach((d, i) => {
     const x = pad + i * bw;
@@ -188,7 +197,7 @@ function project(x, y, z, W, H) {
 }
 function draw() {
   const dpr = devicePixelRatio || 1, W = canvas.clientWidth, H = canvas.clientHeight;
-  if (canvas.width !== W * dpr) { canvas.width = W * dpr; canvas.height = H * dpr; }
+  if (canvas.width !== Math.round(W * dpr) || canvas.height !== Math.round(H * dpr)) { canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); }
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, W, H);
   const P = (x, y, z) => project(x, y, z, W, H);
@@ -200,7 +209,7 @@ function draw() {
     const A = P(...a), B = P(...b);
     ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke();
   }
-  ctx.fillStyle = css("--muted"); ctx.font = "11px " + css("--mono").split(",")[0];
+  ctx.fillStyle = css("--muted"); ctx.font = "12px " + css("--sans");
   const label = (t, x, y, z) => { const q = P(x, y, z); ctx.fillText(t, q[0] + 4, q[1] + 4); };
   label("human " + fmt(cube.max[0]) + " →", 1, -1, -1);
   label("agent " + fmt(cube.max[1]), -1, 1, -1);
@@ -222,7 +231,7 @@ function draw() {
   for (const d of pts) {
     ctx.globalAlpha = d.alpha; ctx.fillStyle = colour(d.v);
     ctx.beginPath(); ctx.arc(d.q[0], d.q[1], Math.max(3, d.q[3] / 22), 0, 7); ctx.fill();
-    ctx.globalAlpha = 1; ctx.fillStyle = css("--fg"); ctx.fillText("#" + (d.i + 1), d.q[0] + 7, d.q[1] - 6);
+    ctx.globalAlpha = 1; ctx.fillStyle = css("--fg"); ctx.font = "600 12px " + css("--sans"); ctx.fillText("#" + (d.i + 1), d.q[0] + 7, d.q[1] - 6);
   }
   const day = cube.days[Math.min(cube.days.length - 1, Math.round(cube.t))];
   document.getElementById("when").textContent = day || "no data yet";
@@ -254,7 +263,7 @@ canvas.onpointermove = (e) => {
   drag = [e.clientX, e.clientY]; draw();
 };
 canvas.onpointerup = () => { drag = null; };
-addEventListener("resize", draw);
+addEventListener("resize", () => { draw(); renderChart(); });
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
 
 async function load() {
@@ -294,7 +303,8 @@ async function load() {
       <td>${esc(m.model)}</td><td>${fmt(m.tokens)}</td><td>${m.projects}</td><td>${m.seconds ?? "—"}</td>
       <td>${m.tokens_per_s ?? "—"}</td><td>${m.in_per_out ?? "—"}</td></tr>`;
     }).join("") || "<tr><td>—</td></tr>";
-    document.getElementById("chart").innerHTML = d.days.length ? chart(d.days) : "<p>No session reported yet.</p>";
+    chartDays = d.days || [];
+    renderChart();
     document.getElementById("rows").innerHTML = d.rows.map((p, i) => `<tr><td>#${i + 1}</td><td>${p.since}</td>
       <td>${p.sessions}</td><td>${fmt(p.human)}</td><td>${fmt(p.agent)}</td><td>${ratio(p.human, p.agent)}</td>
       <td>${fmt(p.loc)}</td><td>${perLine(p.agent, p.loc)}</td><td>${p.violations}</td><td>${esc(p.llm ?? "—")}</td></tr>`).join("");
