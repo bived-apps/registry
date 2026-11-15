@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-labelledby="t d" fill="none" stroke="#1F2430" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <title id="t">Owner</title>
+  <desc id="d">A key inside a gold ring: the owner holds every decision.</desc>
+  <circle cx="12" cy="12" r="11" stroke="#B8860B" stroke-width="1.5"/>
+  <circle cx="8.5" cy="12" r="3"/>
+  <path d="M11.5 12H18M16 12v2.5M18.5 12v2"/>
+</svg>

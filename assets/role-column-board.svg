@@ -1,0 +1,736 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="t d">
+  <title id="t">Role column choosing board</title>
+  <desc id="d">Five options A to E for the first column of the README role table, each with the four roles.</desc>
+  <rect width="100%" height="100%" fill="#FFFFFF"/>
+  <text x="120.0" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#1F2430">A</text>
+  <text x="120.0" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">owner</text>
+<g transform="translate(108.0,110) scale(1)" fill="none" stroke="#1F2430" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="11" stroke="#B8860B" stroke-width="1.5"/>
+  <circle cx="8.5" cy="12" r="3"/>
+  <path d="M11.5 12H18M16 12v2.5M18.5 12v2"/>
+</g>
+  <text x="120.0" y="375" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">advisor</text>
+<g transform="translate(108.0,280) scale(1)" fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="10" cy="10" r="6"/>
+  <path d="M14.5 14.5L20 20"/>
+</g>
+  <text x="120.0" y="545" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">coordinator</text>
+<g transform="translate(108.0,450) scale(1)" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="5" y="4" width="14" height="17" rx="2"/>
+  <rect x="9" y="2" width="6" height="4" rx="1"/>
+  <path d="M8.5 11h7M8.5 15h7"/>
+</g>
+  <text x="120.0" y="715" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">delegate</text>
+<g transform="translate(108.0,620) scale(1)" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="4" y="5" width="16" height="11" rx="1.5"/>
+  <path d="M2 19.5h20"/>
+</g>
+  <text x="360.0" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#1F2430">B</text>
+  <text x="360.0" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">owner</text>
+<g transform="translate(334.0,110) scale(1)" fill="none" stroke="#1F2430" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="11" stroke="#B8860B" stroke-width="1.5"/>
+  <circle cx="8.5" cy="12" r="3"/>
+  <path d="M11.5 12H18M16 12v2.5M18.5 12v2"/>
+</g>
+<g transform="translate(362.0,110) scale(0.25)" >
+<title id="b10owner_t">Maren, the owner</title>
+  <desc id="b10owner_d">Head and shoulders of a cut-paper human on a soft round cream ground: dark hair in a bun held by a gold pin, a dark ink coat with one lapel folded to its gold lining, and one hand holding up a capped dark pen with a gold clip.</desc>
+  <defs>
+    <filter id="b10owner_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="b10owner_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#b10owner_c)">
+    <g transform="translate(39,266) scale(0.6)">
+      <rect x="-9" y="-346" width="18" height="20" fill="#B87B54"/>
+      <g filter="url(#b10owner_sh)">
+        <path d="M-48,-330 L48,-330 L64,-124 L-70,-112 Z" fill="#1F2430"/>
+        <path d="M48,-330 L64,-124 L40,-122 L34,-300 Z" fill="#2B3142"/>
+        <path d="M-14,-332 L14,-332 L0,-290 Z" fill="#F7F5F0"/>
+        <path d="M14,-332 L32,-330 L5,-258 L0,-290 Z" fill="#B8860B"/>
+      </g>
+      <circle cx="0" cy="-372" r="34" fill="#C68B62"/>
+      <path d="M36,-413 L52,-408 L58,-392 L48,-380 L34,-384 L28,-400 Z" fill="#2B2126"/>
+      <path d="M-33,-384 C-26,-420 30,-422 36,-384 L38,-356 L27,-360 C26,-382 6,-394 -33,-384 Z" fill="#2B2126"/>
+      <path d="M30,-416 L56,-378" fill="none" stroke="#B8860B" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="-17" cy="-370" r="4.500" fill="#1F2430"/><circle cx="5" cy="-370" r="4.500" fill="#1F2430"/>
+      <path d="M-13,-354 q6,4 11,0" fill="none" stroke="#1F2430" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- the capped pen, held up -->
+    <path d="M70,92 L80,66" fill="none" stroke="#343B4D" stroke-width="11" stroke-linecap="round"/>
+    <path d="M80,64 L82,50" fill="none" stroke="#6B7280" stroke-width="5" stroke-linecap="round"/>
+    <path d="M82,50 L85,29" fill="none" stroke="#1F2430" stroke-width="7" stroke-linecap="round"/>
+    <path d="M86.500,44 L88.500,31" fill="none" stroke="#B8860B" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="80" cy="64" r="6.500" fill="#C68B62"/>
+  </g>
+</g>
+  <text x="360.0" y="375" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">advisor</text>
+<g transform="translate(334.0,280) scale(1)" fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="10" cy="10" r="6"/>
+  <path d="M14.5 14.5L20 20"/>
+</g>
+<g transform="translate(362.0,280) scale(0.25)" >
+<title id="b11advisor_t">Sill, the advisor</title>
+  <desc id="b11advisor_d">The top of a teal cut-paper letter folded in three, on a soft round cream ground: its pale flap stands open above two dot eyes and a straight mouth, it has no arms, and a small bubble holding a single teal dot shows it answering.</desc>
+  <defs>
+    <filter id="b11advisor_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="b11advisor_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#b11advisor_c)">
+    <g transform="translate(36,206) scale(0.56)">
+      <g filter="url(#b11advisor_sh)">
+        <path d="M-44,-300 L38,-304 L12,-352 Z" fill="#5FB3AA"/>
+        <path d="M46,-212 L54,-205 L47,-126 L40,-128 Z" fill="#0A4A45"/>
+        <path d="M-42,-125 L-50,-119 L-46,-40 L-40,-40 Z" fill="#0A4A45"/>
+        <path d="M-42,-125 L40,-128 L44,-40 L-40,-40 Z" fill="#0B5F59"/>
+        <path d="M-38,-215 L46,-212 L40,-128 L-42,-125 Z" fill="#0F766E"/>
+        <path d="M-44,-300 L38,-304 L46,-212 L-38,-215 Z" fill="#14857C"/>
+        <path d="M-44,-300 L38,-304 L0,-284 Z" fill="#0F766E"/>
+      </g>
+      <circle cx="-13" cy="-258" r="8.500" fill="#F7F5F0"/><circle cx="17" cy="-259" r="8.500" fill="#F7F5F0"/>
+      <circle cx="-10.500" cy="-257" r="4" fill="#1F2430"/><circle cx="19.500" cy="-258" r="4" fill="#1F2430"/>
+      <path d="M-3,-236 h11" fill="none" stroke="#F7F5F0" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <!-- the answer: a bubble with one dot -->
+    <g transform="translate(18,198) scale(0.56)" filter="url(#b11advisor_sh)">
+      <path d="M80,-290 L56,-268 L94,-281 Z" fill="#FFFDF8"/>
+      <ellipse cx="98" cy="-298" rx="24" ry="17" fill="#FFFDF8"/>
+    </g>
+    <circle cx="72.900" cy="31.100" r="4.200" fill="#0F766E"/>
+  </g>
+</g>
+  <text x="360.0" y="545" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">coordinator</text>
+<g transform="translate(334.0,450) scale(1)" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="5" y="4" width="14" height="17" rx="2"/>
+  <rect x="9" y="2" width="6" height="4" rx="1"/>
+  <path d="M8.5 11h7M8.5 15h7"/>
+</g>
+<g transform="translate(362.0,450) scale(0.25)" >
+<title id="b12coordinator_t">Brae, the coordinator</title>
+  <desc id="b12coordinator_d">A wide amber cut-paper folder on a soft round cream ground: its top edge is folded over in a lighter amber, it has two dot eyes and a smile, a small mustard flag stands behind it, and a fan of violet task cards and one cream card shows in its front pocket.</desc>
+  <defs>
+    <filter id="b12coordinator_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="b12coordinator_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#b12coordinator_c)">
+    <g transform="translate(47,133) scale(0.46)">
+      <path d="M-34,-226 V-276" fill="none" stroke="#5B5548" stroke-width="4" stroke-linecap="round"/>
+      <path d="M-34,-276 L-2,-265 L-34,-254 Z" fill="#E0A82E"/>
+      <g filter="url(#b12coordinator_sh)">
+        <path d="M-50,-232 L46,-238 L80,-42 L-76,-42 Z" fill="#B45309"/>
+        <path d="M51,-207 L80,-42 L56,-42 Z" fill="#9A4507"/>
+        <path d="M-2,-197 L8,-198 L12,-42 L-6,-42 Z" fill="#9A4507"/>
+        <g>
+          <rect x="-11" y="-22" width="22" height="40" fill="#8B5CF6" transform="translate(-56,-98) rotate(-22)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#6D28D9" transform="translate(-45,-102) rotate(-8)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#4C1D95" transform="translate(-34,-102) rotate(6)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#FFFDF8" transform="translate(-23,-99) rotate(20)"/>
+        </g>
+        <path d="M-69,-95 L-8,-98 L-14,-42 L-76,-42 Z" fill="#C8691F"/>
+        <path d="M-50,-232 L46,-238 L51,-207 L-55,-190 Z" fill="#DE9448"/>
+      </g>
+      <circle cx="-22" cy="-160" r="9" fill="#F7F5F0"/><circle cx="26" cy="-163" r="9" fill="#F7F5F0"/>
+      <circle cx="-19.500" cy="-159" r="4.500" fill="#1F2430"/><circle cx="28.500" cy="-162" r="4.500" fill="#1F2430"/>
+      <path d="M-6,-139 q8,6 16,-1" fill="none" stroke="#F7F5F0" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+</g>
+  <text x="360.0" y="715" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">delegate</text>
+<g transform="translate(334.0,620) scale(1)" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="4" y="5" width="16" height="11" rx="1.5"/>
+  <path d="M2 19.5h20"/>
+</g>
+<g transform="translate(362.0,620) scale(0.25)" >
+<title id="b13delegate_t">Pim, a delegate</title>
+  <desc id="b13delegate_d">A small light violet cut-paper droplet with a bent pale tip, on a soft round cream ground: two dot eyes, a belt of three small beads, and one arm holding up a paintbrush with a wooden handle and dark bristles.</desc>
+  <defs>
+    <filter id="b13delegate_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="b13delegate_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#b13delegate_c)">
+    <g transform="translate(40,106) scale(0.52)">
+      <g filter="url(#b13delegate_sh)">
+        <path d="M-14,-146 L22,-150 L36,-124 L50,-88 L40,-52 L8,-34 L-30,-42 L-50,-78 L-40,-122 Z" fill="#8B5CF6"/>
+        <path d="M-14,-146 L22,-150 L20,-188 Z" fill="#B79CFB"/>
+        <path d="M-50,-78 L-30,-42 L8,-34 L-16,-66 Z" fill="#7446E0"/>
+        <path d="M-40,-122 L-14,-146 L-24,-116 Z" fill="#9D78F9"/>
+      </g>
+      <circle cx="-12" cy="-110" r="8.500" fill="#F7F5F0"/><circle cx="14" cy="-111" r="8.500" fill="#F7F5F0"/>
+      <circle cx="-9.500" cy="-110" r="4" fill="#1F2430"/><circle cx="16.500" cy="-111" r="4" fill="#1F2430"/>
+      <path d="M-46,-94 Q2,-64 48,-92" fill="none" stroke="#4A3A7A" stroke-width="2"/>
+      <circle cx="-12" cy="-80.500" r="5" fill="#EDE9FE"/><circle cx="3" cy="-78" r="5" fill="#E0A82E"/><circle cx="18" cy="-81" r="5" fill="#EDE9FE"/>
+    </g>
+    <!-- the brush, bristles up -->
+    <path d="M78,74 L82,44" fill="none" stroke="#C9A56A" stroke-width="4.500" stroke-linecap="round"/>
+    <path d="M82,45 L83,38" fill="none" stroke="#9CA3AF" stroke-width="7"/>
+    <path d="M79.300,38 L86.700,39 L87,30 L85,21 L80.500,29 Z" fill="#2E2152"/>
+    <path d="M62,62 Q72,70 79,62" fill="none" stroke="#5B33C9" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</g>
+  <text x="600.0" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#1F2430">C</text>
+  <text x="600.0" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">owner</text>
+<g transform="translate(584.0,110) scale(0.3333333333333333)" >
+<title id="c20owner_t">Maren, the owner</title>
+  <desc id="c20owner_d">Head and shoulders of a cut-paper human on a soft round cream ground: dark hair in a bun held by a gold pin, a dark ink coat with one lapel folded to its gold lining, and one hand holding up a capped dark pen with a gold clip.</desc>
+  <defs>
+    <filter id="c20owner_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="c20owner_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#c20owner_c)">
+    <g transform="translate(39,266) scale(0.6)">
+      <rect x="-9" y="-346" width="18" height="20" fill="#B87B54"/>
+      <g filter="url(#c20owner_sh)">
+        <path d="M-48,-330 L48,-330 L64,-124 L-70,-112 Z" fill="#1F2430"/>
+        <path d="M48,-330 L64,-124 L40,-122 L34,-300 Z" fill="#2B3142"/>
+        <path d="M-14,-332 L14,-332 L0,-290 Z" fill="#F7F5F0"/>
+        <path d="M14,-332 L32,-330 L5,-258 L0,-290 Z" fill="#B8860B"/>
+      </g>
+      <circle cx="0" cy="-372" r="34" fill="#C68B62"/>
+      <path d="M36,-413 L52,-408 L58,-392 L48,-380 L34,-384 L28,-400 Z" fill="#2B2126"/>
+      <path d="M-33,-384 C-26,-420 30,-422 36,-384 L38,-356 L27,-360 C26,-382 6,-394 -33,-384 Z" fill="#2B2126"/>
+      <path d="M30,-416 L56,-378" fill="none" stroke="#B8860B" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="-17" cy="-370" r="4.500" fill="#1F2430"/><circle cx="5" cy="-370" r="4.500" fill="#1F2430"/>
+      <path d="M-13,-354 q6,4 11,0" fill="none" stroke="#1F2430" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- the capped pen, held up -->
+    <path d="M70,92 L80,66" fill="none" stroke="#343B4D" stroke-width="11" stroke-linecap="round"/>
+    <path d="M80,64 L82,50" fill="none" stroke="#6B7280" stroke-width="5" stroke-linecap="round"/>
+    <path d="M82,50 L85,29" fill="none" stroke="#1F2430" stroke-width="7" stroke-linecap="round"/>
+    <path d="M86.500,44 L88.500,31" fill="none" stroke="#B8860B" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="80" cy="64" r="6.500" fill="#C68B62"/>
+  </g>
+</g>
+  <text x="600.0" y="375" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">advisor</text>
+<g transform="translate(584.0,280) scale(0.3333333333333333)" >
+<title id="c21advisor_t">Sill, the advisor</title>
+  <desc id="c21advisor_d">The top of a teal cut-paper letter folded in three, on a soft round cream ground: its pale flap stands open above two dot eyes and a straight mouth, it has no arms, and a small bubble holding a single teal dot shows it answering.</desc>
+  <defs>
+    <filter id="c21advisor_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="c21advisor_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#c21advisor_c)">
+    <g transform="translate(36,206) scale(0.56)">
+      <g filter="url(#c21advisor_sh)">
+        <path d="M-44,-300 L38,-304 L12,-352 Z" fill="#5FB3AA"/>
+        <path d="M46,-212 L54,-205 L47,-126 L40,-128 Z" fill="#0A4A45"/>
+        <path d="M-42,-125 L-50,-119 L-46,-40 L-40,-40 Z" fill="#0A4A45"/>
+        <path d="M-42,-125 L40,-128 L44,-40 L-40,-40 Z" fill="#0B5F59"/>
+        <path d="M-38,-215 L46,-212 L40,-128 L-42,-125 Z" fill="#0F766E"/>
+        <path d="M-44,-300 L38,-304 L46,-212 L-38,-215 Z" fill="#14857C"/>
+        <path d="M-44,-300 L38,-304 L0,-284 Z" fill="#0F766E"/>
+      </g>
+      <circle cx="-13" cy="-258" r="8.500" fill="#F7F5F0"/><circle cx="17" cy="-259" r="8.500" fill="#F7F5F0"/>
+      <circle cx="-10.500" cy="-257" r="4" fill="#1F2430"/><circle cx="19.500" cy="-258" r="4" fill="#1F2430"/>
+      <path d="M-3,-236 h11" fill="none" stroke="#F7F5F0" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <!-- the answer: a bubble with one dot -->
+    <g transform="translate(18,198) scale(0.56)" filter="url(#c21advisor_sh)">
+      <path d="M80,-290 L56,-268 L94,-281 Z" fill="#FFFDF8"/>
+      <ellipse cx="98" cy="-298" rx="24" ry="17" fill="#FFFDF8"/>
+    </g>
+    <circle cx="72.900" cy="31.100" r="4.200" fill="#0F766E"/>
+  </g>
+</g>
+  <text x="600.0" y="545" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">coordinator</text>
+<g transform="translate(584.0,450) scale(0.3333333333333333)" >
+<title id="c22coordinator_t">Brae, the coordinator</title>
+  <desc id="c22coordinator_d">A wide amber cut-paper folder on a soft round cream ground: its top edge is folded over in a lighter amber, it has two dot eyes and a smile, a small mustard flag stands behind it, and a fan of violet task cards and one cream card shows in its front pocket.</desc>
+  <defs>
+    <filter id="c22coordinator_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="c22coordinator_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#c22coordinator_c)">
+    <g transform="translate(47,133) scale(0.46)">
+      <path d="M-34,-226 V-276" fill="none" stroke="#5B5548" stroke-width="4" stroke-linecap="round"/>
+      <path d="M-34,-276 L-2,-265 L-34,-254 Z" fill="#E0A82E"/>
+      <g filter="url(#c22coordinator_sh)">
+        <path d="M-50,-232 L46,-238 L80,-42 L-76,-42 Z" fill="#B45309"/>
+        <path d="M51,-207 L80,-42 L56,-42 Z" fill="#9A4507"/>
+        <path d="M-2,-197 L8,-198 L12,-42 L-6,-42 Z" fill="#9A4507"/>
+        <g>
+          <rect x="-11" y="-22" width="22" height="40" fill="#8B5CF6" transform="translate(-56,-98) rotate(-22)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#6D28D9" transform="translate(-45,-102) rotate(-8)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#4C1D95" transform="translate(-34,-102) rotate(6)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#FFFDF8" transform="translate(-23,-99) rotate(20)"/>
+        </g>
+        <path d="M-69,-95 L-8,-98 L-14,-42 L-76,-42 Z" fill="#C8691F"/>
+        <path d="M-50,-232 L46,-238 L51,-207 L-55,-190 Z" fill="#DE9448"/>
+      </g>
+      <circle cx="-22" cy="-160" r="9" fill="#F7F5F0"/><circle cx="26" cy="-163" r="9" fill="#F7F5F0"/>
+      <circle cx="-19.500" cy="-159" r="4.500" fill="#1F2430"/><circle cx="28.500" cy="-162" r="4.500" fill="#1F2430"/>
+      <path d="M-6,-139 q8,6 16,-1" fill="none" stroke="#F7F5F0" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+</g>
+  <text x="600.0" y="715" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">delegate</text>
+<g transform="translate(584.0,620) scale(0.3333333333333333)" >
+<title id="c23delegate_t">Pim, a delegate</title>
+  <desc id="c23delegate_d">A small light violet cut-paper droplet with a bent pale tip, on a soft round cream ground: two dot eyes, a belt of three small beads, and one arm holding up a paintbrush with a wooden handle and dark bristles.</desc>
+  <defs>
+    <filter id="c23delegate_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="c23delegate_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#c23delegate_c)">
+    <g transform="translate(40,106) scale(0.52)">
+      <g filter="url(#c23delegate_sh)">
+        <path d="M-14,-146 L22,-150 L36,-124 L50,-88 L40,-52 L8,-34 L-30,-42 L-50,-78 L-40,-122 Z" fill="#8B5CF6"/>
+        <path d="M-14,-146 L22,-150 L20,-188 Z" fill="#B79CFB"/>
+        <path d="M-50,-78 L-30,-42 L8,-34 L-16,-66 Z" fill="#7446E0"/>
+        <path d="M-40,-122 L-14,-146 L-24,-116 Z" fill="#9D78F9"/>
+      </g>
+      <circle cx="-12" cy="-110" r="8.500" fill="#F7F5F0"/><circle cx="14" cy="-111" r="8.500" fill="#F7F5F0"/>
+      <circle cx="-9.500" cy="-110" r="4" fill="#1F2430"/><circle cx="16.500" cy="-111" r="4" fill="#1F2430"/>
+      <path d="M-46,-94 Q2,-64 48,-92" fill="none" stroke="#4A3A7A" stroke-width="2"/>
+      <circle cx="-12" cy="-80.500" r="5" fill="#EDE9FE"/><circle cx="3" cy="-78" r="5" fill="#E0A82E"/><circle cx="18" cy="-81" r="5" fill="#EDE9FE"/>
+    </g>
+    <!-- the brush, bristles up -->
+    <path d="M78,74 L82,44" fill="none" stroke="#C9A56A" stroke-width="4.500" stroke-linecap="round"/>
+    <path d="M82,45 L83,38" fill="none" stroke="#9CA3AF" stroke-width="7"/>
+    <path d="M79.300,38 L86.700,39 L87,30 L85,21 L80.500,29 Z" fill="#2E2152"/>
+    <path d="M62,62 Q72,70 79,62" fill="none" stroke="#5B33C9" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</g>
+  <text x="840.0" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#1F2430">D</text>
+  <text x="840.0" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">owner</text>
+<g transform="translate(798.0,110) scale(1.6666666666666667)" fill="none" stroke="#1F2430" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="11" stroke="#B8860B" stroke-width="1.5"/>
+  <circle cx="8.5" cy="12" r="3"/>
+  <path d="M11.5 12H18M16 12v2.5M18.5 12v2"/>
+</g>
+<g transform="translate(842.0,110) scale(0.4166666666666667)" >
+<title id="d30owner_t">Maren, the owner</title>
+  <desc id="d30owner_d">Head and shoulders of a cut-paper human on a soft round cream ground: dark hair in a bun held by a gold pin, a dark ink coat with one lapel folded to its gold lining, and one hand holding up a capped dark pen with a gold clip.</desc>
+  <defs>
+    <filter id="d30owner_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="d30owner_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#d30owner_c)">
+    <g transform="translate(39,266) scale(0.6)">
+      <rect x="-9" y="-346" width="18" height="20" fill="#B87B54"/>
+      <g filter="url(#d30owner_sh)">
+        <path d="M-48,-330 L48,-330 L64,-124 L-70,-112 Z" fill="#1F2430"/>
+        <path d="M48,-330 L64,-124 L40,-122 L34,-300 Z" fill="#2B3142"/>
+        <path d="M-14,-332 L14,-332 L0,-290 Z" fill="#F7F5F0"/>
+        <path d="M14,-332 L32,-330 L5,-258 L0,-290 Z" fill="#B8860B"/>
+      </g>
+      <circle cx="0" cy="-372" r="34" fill="#C68B62"/>
+      <path d="M36,-413 L52,-408 L58,-392 L48,-380 L34,-384 L28,-400 Z" fill="#2B2126"/>
+      <path d="M-33,-384 C-26,-420 30,-422 36,-384 L38,-356 L27,-360 C26,-382 6,-394 -33,-384 Z" fill="#2B2126"/>
+      <path d="M30,-416 L56,-378" fill="none" stroke="#B8860B" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="-17" cy="-370" r="4.500" fill="#1F2430"/><circle cx="5" cy="-370" r="4.500" fill="#1F2430"/>
+      <path d="M-13,-354 q6,4 11,0" fill="none" stroke="#1F2430" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- the capped pen, held up -->
+    <path d="M70,92 L80,66" fill="none" stroke="#343B4D" stroke-width="11" stroke-linecap="round"/>
+    <path d="M80,64 L82,50" fill="none" stroke="#6B7280" stroke-width="5" stroke-linecap="round"/>
+    <path d="M82,50 L85,29" fill="none" stroke="#1F2430" stroke-width="7" stroke-linecap="round"/>
+    <path d="M86.500,44 L88.500,31" fill="none" stroke="#B8860B" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="80" cy="64" r="6.500" fill="#C68B62"/>
+  </g>
+</g>
+  <text x="840.0" y="375" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">advisor</text>
+<g transform="translate(798.0,280) scale(1.6666666666666667)" fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="10" cy="10" r="6"/>
+  <path d="M14.5 14.5L20 20"/>
+</g>
+<g transform="translate(842.0,280) scale(0.4166666666666667)" >
+<title id="d31advisor_t">Sill, the advisor</title>
+  <desc id="d31advisor_d">The top of a teal cut-paper letter folded in three, on a soft round cream ground: its pale flap stands open above two dot eyes and a straight mouth, it has no arms, and a small bubble holding a single teal dot shows it answering.</desc>
+  <defs>
+    <filter id="d31advisor_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="d31advisor_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#d31advisor_c)">
+    <g transform="translate(36,206) scale(0.56)">
+      <g filter="url(#d31advisor_sh)">
+        <path d="M-44,-300 L38,-304 L12,-352 Z" fill="#5FB3AA"/>
+        <path d="M46,-212 L54,-205 L47,-126 L40,-128 Z" fill="#0A4A45"/>
+        <path d="M-42,-125 L-50,-119 L-46,-40 L-40,-40 Z" fill="#0A4A45"/>
+        <path d="M-42,-125 L40,-128 L44,-40 L-40,-40 Z" fill="#0B5F59"/>
+        <path d="M-38,-215 L46,-212 L40,-128 L-42,-125 Z" fill="#0F766E"/>
+        <path d="M-44,-300 L38,-304 L46,-212 L-38,-215 Z" fill="#14857C"/>
+        <path d="M-44,-300 L38,-304 L0,-284 Z" fill="#0F766E"/>
+      </g>
+      <circle cx="-13" cy="-258" r="8.500" fill="#F7F5F0"/><circle cx="17" cy="-259" r="8.500" fill="#F7F5F0"/>
+      <circle cx="-10.500" cy="-257" r="4" fill="#1F2430"/><circle cx="19.500" cy="-258" r="4" fill="#1F2430"/>
+      <path d="M-3,-236 h11" fill="none" stroke="#F7F5F0" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <!-- the answer: a bubble with one dot -->
+    <g transform="translate(18,198) scale(0.56)" filter="url(#d31advisor_sh)">
+      <path d="M80,-290 L56,-268 L94,-281 Z" fill="#FFFDF8"/>
+      <ellipse cx="98" cy="-298" rx="24" ry="17" fill="#FFFDF8"/>
+    </g>
+    <circle cx="72.900" cy="31.100" r="4.200" fill="#0F766E"/>
+  </g>
+</g>
+  <text x="840.0" y="545" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">coordinator</text>
+<g transform="translate(798.0,450) scale(1.6666666666666667)" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="5" y="4" width="14" height="17" rx="2"/>
+  <rect x="9" y="2" width="6" height="4" rx="1"/>
+  <path d="M8.5 11h7M8.5 15h7"/>
+</g>
+<g transform="translate(842.0,450) scale(0.4166666666666667)" >
+<title id="d32coordinator_t">Brae, the coordinator</title>
+  <desc id="d32coordinator_d">A wide amber cut-paper folder on a soft round cream ground: its top edge is folded over in a lighter amber, it has two dot eyes and a smile, a small mustard flag stands behind it, and a fan of violet task cards and one cream card shows in its front pocket.</desc>
+  <defs>
+    <filter id="d32coordinator_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="d32coordinator_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#d32coordinator_c)">
+    <g transform="translate(47,133) scale(0.46)">
+      <path d="M-34,-226 V-276" fill="none" stroke="#5B5548" stroke-width="4" stroke-linecap="round"/>
+      <path d="M-34,-276 L-2,-265 L-34,-254 Z" fill="#E0A82E"/>
+      <g filter="url(#d32coordinator_sh)">
+        <path d="M-50,-232 L46,-238 L80,-42 L-76,-42 Z" fill="#B45309"/>
+        <path d="M51,-207 L80,-42 L56,-42 Z" fill="#9A4507"/>
+        <path d="M-2,-197 L8,-198 L12,-42 L-6,-42 Z" fill="#9A4507"/>
+        <g>
+          <rect x="-11" y="-22" width="22" height="40" fill="#8B5CF6" transform="translate(-56,-98) rotate(-22)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#6D28D9" transform="translate(-45,-102) rotate(-8)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#4C1D95" transform="translate(-34,-102) rotate(6)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#FFFDF8" transform="translate(-23,-99) rotate(20)"/>
+        </g>
+        <path d="M-69,-95 L-8,-98 L-14,-42 L-76,-42 Z" fill="#C8691F"/>
+        <path d="M-50,-232 L46,-238 L51,-207 L-55,-190 Z" fill="#DE9448"/>
+      </g>
+      <circle cx="-22" cy="-160" r="9" fill="#F7F5F0"/><circle cx="26" cy="-163" r="9" fill="#F7F5F0"/>
+      <circle cx="-19.500" cy="-159" r="4.500" fill="#1F2430"/><circle cx="28.500" cy="-162" r="4.500" fill="#1F2430"/>
+      <path d="M-6,-139 q8,6 16,-1" fill="none" stroke="#F7F5F0" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+</g>
+  <text x="840.0" y="715" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">delegate</text>
+<g transform="translate(798.0,620) scale(1.6666666666666667)" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="4" y="5" width="16" height="11" rx="1.5"/>
+  <path d="M2 19.5h20"/>
+</g>
+<g transform="translate(842.0,620) scale(0.4166666666666667)" >
+<title id="d33delegate_t">Pim, a delegate</title>
+  <desc id="d33delegate_d">A small light violet cut-paper droplet with a bent pale tip, on a soft round cream ground: two dot eyes, a belt of three small beads, and one arm holding up a paintbrush with a wooden handle and dark bristles.</desc>
+  <defs>
+    <filter id="d33delegate_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="d33delegate_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#d33delegate_c)">
+    <g transform="translate(40,106) scale(0.52)">
+      <g filter="url(#d33delegate_sh)">
+        <path d="M-14,-146 L22,-150 L36,-124 L50,-88 L40,-52 L8,-34 L-30,-42 L-50,-78 L-40,-122 Z" fill="#8B5CF6"/>
+        <path d="M-14,-146 L22,-150 L20,-188 Z" fill="#B79CFB"/>
+        <path d="M-50,-78 L-30,-42 L8,-34 L-16,-66 Z" fill="#7446E0"/>
+        <path d="M-40,-122 L-14,-146 L-24,-116 Z" fill="#9D78F9"/>
+      </g>
+      <circle cx="-12" cy="-110" r="8.500" fill="#F7F5F0"/><circle cx="14" cy="-111" r="8.500" fill="#F7F5F0"/>
+      <circle cx="-9.500" cy="-110" r="4" fill="#1F2430"/><circle cx="16.500" cy="-111" r="4" fill="#1F2430"/>
+      <path d="M-46,-94 Q2,-64 48,-92" fill="none" stroke="#4A3A7A" stroke-width="2"/>
+      <circle cx="-12" cy="-80.500" r="5" fill="#EDE9FE"/><circle cx="3" cy="-78" r="5" fill="#E0A82E"/><circle cx="18" cy="-81" r="5" fill="#EDE9FE"/>
+    </g>
+    <!-- the brush, bristles up -->
+    <path d="M78,74 L82,44" fill="none" stroke="#C9A56A" stroke-width="4.500" stroke-linecap="round"/>
+    <path d="M82,45 L83,38" fill="none" stroke="#9CA3AF" stroke-width="7"/>
+    <path d="M79.300,38 L86.700,39 L87,30 L85,21 L80.500,29 Z" fill="#2E2152"/>
+    <path d="M62,62 Q72,70 79,62" fill="none" stroke="#5B33C9" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</g>
+  <text x="1080.0" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="bold" fill="#1F2430">E</text>
+  <text x="1080.0" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">owner</text>
+<g transform="translate(1054.0,110) scale(1)" fill="none" stroke="#1F2430" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="11" stroke="#B8860B" stroke-width="1.5"/>
+  <circle cx="8.5" cy="12" r="3"/>
+  <path d="M11.5 12H18M16 12v2.5M18.5 12v2"/>
+</g>
+<g transform="translate(1082.0,110) scale(0.25)" >
+<title id="e40owner_t">Maren, the owner</title>
+  <desc id="e40owner_d">Head and shoulders of a cut-paper human on a soft round cream ground: dark hair in a bun held by a gold pin, a dark ink coat with one lapel folded to its gold lining, and one hand holding up a capped dark pen with a gold clip.</desc>
+  <defs>
+    <filter id="e40owner_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="e40owner_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#e40owner_c)">
+    <g transform="translate(39,266) scale(0.6)">
+      <rect x="-9" y="-346" width="18" height="20" fill="#B87B54"/>
+      <g filter="url(#e40owner_sh)">
+        <path d="M-48,-330 L48,-330 L64,-124 L-70,-112 Z" fill="#1F2430"/>
+        <path d="M48,-330 L64,-124 L40,-122 L34,-300 Z" fill="#2B3142"/>
+        <path d="M-14,-332 L14,-332 L0,-290 Z" fill="#F7F5F0"/>
+        <path d="M14,-332 L32,-330 L5,-258 L0,-290 Z" fill="#B8860B"/>
+      </g>
+      <circle cx="0" cy="-372" r="34" fill="#C68B62"/>
+      <path d="M36,-413 L52,-408 L58,-392 L48,-380 L34,-384 L28,-400 Z" fill="#2B2126"/>
+      <path d="M-33,-384 C-26,-420 30,-422 36,-384 L38,-356 L27,-360 C26,-382 6,-394 -33,-384 Z" fill="#2B2126"/>
+      <path d="M30,-416 L56,-378" fill="none" stroke="#B8860B" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="-17" cy="-370" r="4.500" fill="#1F2430"/><circle cx="5" cy="-370" r="4.500" fill="#1F2430"/>
+      <path d="M-13,-354 q6,4 11,0" fill="none" stroke="#1F2430" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- the capped pen, held up -->
+    <path d="M70,92 L80,66" fill="none" stroke="#343B4D" stroke-width="11" stroke-linecap="round"/>
+    <path d="M80,64 L82,50" fill="none" stroke="#6B7280" stroke-width="5" stroke-linecap="round"/>
+    <path d="M82,50 L85,29" fill="none" stroke="#1F2430" stroke-width="7" stroke-linecap="round"/>
+    <path d="M86.500,44 L88.500,31" fill="none" stroke="#B8860B" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="80" cy="64" r="6.500" fill="#C68B62"/>
+  </g>
+</g>
+  <text x="1080.0" y="375" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">advisor</text>
+<g transform="translate(1054.0,280) scale(1)" fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="10" cy="10" r="6"/>
+  <path d="M14.5 14.5L20 20"/>
+</g>
+<g transform="translate(1082.0,280) scale(0.25)" >
+<title id="e41advisor_t">Sill, the advisor</title>
+  <desc id="e41advisor_d">The top of a teal cut-paper letter folded in three, on a soft round cream ground: its pale flap stands open above two dot eyes and a straight mouth, it has no arms, and a small bubble holding a single teal dot shows it answering.</desc>
+  <defs>
+    <filter id="e41advisor_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="e41advisor_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#e41advisor_c)">
+    <g transform="translate(36,206) scale(0.56)">
+      <g filter="url(#e41advisor_sh)">
+        <path d="M-44,-300 L38,-304 L12,-352 Z" fill="#5FB3AA"/>
+        <path d="M46,-212 L54,-205 L47,-126 L40,-128 Z" fill="#0A4A45"/>
+        <path d="M-42,-125 L-50,-119 L-46,-40 L-40,-40 Z" fill="#0A4A45"/>
+        <path d="M-42,-125 L40,-128 L44,-40 L-40,-40 Z" fill="#0B5F59"/>
+        <path d="M-38,-215 L46,-212 L40,-128 L-42,-125 Z" fill="#0F766E"/>
+        <path d="M-44,-300 L38,-304 L46,-212 L-38,-215 Z" fill="#14857C"/>
+        <path d="M-44,-300 L38,-304 L0,-284 Z" fill="#0F766E"/>
+      </g>
+      <circle cx="-13" cy="-258" r="8.500" fill="#F7F5F0"/><circle cx="17" cy="-259" r="8.500" fill="#F7F5F0"/>
+      <circle cx="-10.500" cy="-257" r="4" fill="#1F2430"/><circle cx="19.500" cy="-258" r="4" fill="#1F2430"/>
+      <path d="M-3,-236 h11" fill="none" stroke="#F7F5F0" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <!-- the answer: a bubble with one dot -->
+    <g transform="translate(18,198) scale(0.56)" filter="url(#e41advisor_sh)">
+      <path d="M80,-290 L56,-268 L94,-281 Z" fill="#FFFDF8"/>
+      <ellipse cx="98" cy="-298" rx="24" ry="17" fill="#FFFDF8"/>
+    </g>
+    <circle cx="72.900" cy="31.100" r="4.200" fill="#0F766E"/>
+  </g>
+</g>
+  <text x="1080.0" y="545" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">coordinator</text>
+<g transform="translate(1054.0,450) scale(1)" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="5" y="4" width="14" height="17" rx="2"/>
+  <rect x="9" y="2" width="6" height="4" rx="1"/>
+  <path d="M8.5 11h7M8.5 15h7"/>
+</g>
+<g transform="translate(1082.0,450) scale(0.25)" >
+<title id="e42coordinator_t">Brae, the coordinator</title>
+  <desc id="e42coordinator_d">A wide amber cut-paper folder on a soft round cream ground: its top edge is folded over in a lighter amber, it has two dot eyes and a smile, a small mustard flag stands behind it, and a fan of violet task cards and one cream card shows in its front pocket.</desc>
+  <defs>
+    <filter id="e42coordinator_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="e42coordinator_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#e42coordinator_c)">
+    <g transform="translate(47,133) scale(0.46)">
+      <path d="M-34,-226 V-276" fill="none" stroke="#5B5548" stroke-width="4" stroke-linecap="round"/>
+      <path d="M-34,-276 L-2,-265 L-34,-254 Z" fill="#E0A82E"/>
+      <g filter="url(#e42coordinator_sh)">
+        <path d="M-50,-232 L46,-238 L80,-42 L-76,-42 Z" fill="#B45309"/>
+        <path d="M51,-207 L80,-42 L56,-42 Z" fill="#9A4507"/>
+        <path d="M-2,-197 L8,-198 L12,-42 L-6,-42 Z" fill="#9A4507"/>
+        <g>
+          <rect x="-11" y="-22" width="22" height="40" fill="#8B5CF6" transform="translate(-56,-98) rotate(-22)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#6D28D9" transform="translate(-45,-102) rotate(-8)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#4C1D95" transform="translate(-34,-102) rotate(6)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#FFFDF8" transform="translate(-23,-99) rotate(20)"/>
+        </g>
+        <path d="M-69,-95 L-8,-98 L-14,-42 L-76,-42 Z" fill="#C8691F"/>
+        <path d="M-50,-232 L46,-238 L51,-207 L-55,-190 Z" fill="#DE9448"/>
+      </g>
+      <circle cx="-22" cy="-160" r="9" fill="#F7F5F0"/><circle cx="26" cy="-163" r="9" fill="#F7F5F0"/>
+      <circle cx="-19.500" cy="-159" r="4.500" fill="#1F2430"/><circle cx="28.500" cy="-162" r="4.500" fill="#1F2430"/>
+      <path d="M-6,-139 q8,6 16,-1" fill="none" stroke="#F7F5F0" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+</g>
+  <text x="1080.0" y="715" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#5B6270">delegate</text>
+<g transform="translate(1030.0,620) scale(1)" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="4" y="5" width="16" height="11" rx="1.5"/>
+  <path d="M2 19.5h20"/>
+</g>
+<g transform="translate(1058.0,620) scale(0.25)" >
+<title id="e43pim_t">Pim, a delegate</title>
+  <desc id="e43pim_d">A small light violet cut-paper droplet with a bent pale tip, on a soft round cream ground: two dot eyes, a belt of three small beads, and one arm holding up a paintbrush with a wooden handle and dark bristles.</desc>
+  <defs>
+    <filter id="e43pim_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="e43pim_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#e43pim_c)">
+    <g transform="translate(40,106) scale(0.52)">
+      <g filter="url(#e43pim_sh)">
+        <path d="M-14,-146 L22,-150 L36,-124 L50,-88 L40,-52 L8,-34 L-30,-42 L-50,-78 L-40,-122 Z" fill="#8B5CF6"/>
+        <path d="M-14,-146 L22,-150 L20,-188 Z" fill="#B79CFB"/>
+        <path d="M-50,-78 L-30,-42 L8,-34 L-16,-66 Z" fill="#7446E0"/>
+        <path d="M-40,-122 L-14,-146 L-24,-116 Z" fill="#9D78F9"/>
+      </g>
+      <circle cx="-12" cy="-110" r="8.500" fill="#F7F5F0"/><circle cx="14" cy="-111" r="8.500" fill="#F7F5F0"/>
+      <circle cx="-9.500" cy="-110" r="4" fill="#1F2430"/><circle cx="16.500" cy="-111" r="4" fill="#1F2430"/>
+      <path d="M-46,-94 Q2,-64 48,-92" fill="none" stroke="#4A3A7A" stroke-width="2"/>
+      <circle cx="-12" cy="-80.500" r="5" fill="#EDE9FE"/><circle cx="3" cy="-78" r="5" fill="#E0A82E"/><circle cx="18" cy="-81" r="5" fill="#EDE9FE"/>
+    </g>
+    <!-- the brush, bristles up -->
+    <path d="M78,74 L82,44" fill="none" stroke="#C9A56A" stroke-width="4.500" stroke-linecap="round"/>
+    <path d="M82,45 L83,38" fill="none" stroke="#9CA3AF" stroke-width="7"/>
+    <path d="M79.300,38 L86.700,39 L87,30 L85,21 L80.500,29 Z" fill="#2E2152"/>
+    <path d="M62,62 Q72,70 79,62" fill="none" stroke="#5B33C9" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</g>
+<g transform="translate(1084.0,620) scale(0.25)" >
+<title id="e43odet_t">Odet, a delegate</title>
+  <desc id="e43odet_d">A violet cut-paper square with a pale dog-eared corner and a small coral knotted ribbon, on a soft round cream ground: two dot eyes, a straight mouth, and one arm holding a dark spool whose thread trails away.</desc>
+  <defs>
+    <filter id="e43odet_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="e43odet_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#e43odet_c)">
+    <g transform="translate(40,98) scale(0.5)">
+      <g filter="url(#e43odet_sh)">
+        <path d="M-60,-156 L22,-160 L58,-126 L60,-44 L-56,-40 Z" fill="#6D28D9"/>
+        <path d="M-60,-156 L-56,-40 L-22,-41 Z" fill="#5A1FBF"/>
+        <path d="M22,-160 L58,-126 L24,-123 Z" fill="#A98BF5"/>
+      </g>
+      <path d="M-44,-157 l-13,15 M-44,-157 l5,20" fill="none" stroke="#E4674F" stroke-width="6" stroke-linecap="butt"/>
+      <rect x="-50" y="-163" width="12" height="12" fill="#C9523C" transform="rotate(-12 -44 -157)"/>
+      <circle cx="-14" cy="-108" r="8.500" fill="#F7F5F0"/><circle cx="14" cy="-109" r="8.500" fill="#F7F5F0"/>
+      <circle cx="-11.500" cy="-108" r="4" fill="#1F2430"/><circle cx="16.500" cy="-109" r="4" fill="#1F2430"/>
+      <path d="M-5,-86 h12" fill="none" stroke="#F7F5F0" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <!-- the spool and its thread -->
+    <path d="M80,50 Q94,40 84,30 Q76,24 82,18" fill="none" stroke="#3B2A6B" stroke-width="1.800" stroke-linecap="round"/>
+    <rect x="75" y="49" width="10" height="14" fill="#3B2A6B"/>
+    <rect x="73" y="46.500" width="14" height="3.500" fill="#C9A56A"/><rect x="73" y="62" width="14" height="3.500" fill="#C9A56A"/>
+    <path d="M68,62 Q72,72 80,67" fill="none" stroke="#4A1AA0" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</g>
+<g transform="translate(1110.0,620) scale(0.25)" >
+<title id="e43fenn_t">Fenn, a delegate</title>
+  <desc id="e43fenn_d">A deep violet cut-paper box lid, four flaps round a square panel, on a soft round cream ground: two dot eyes and a smile, a small mustard flag standing behind it, and one arm holding a brighter violet set square.</desc>
+  <defs>
+    <filter id="e43fenn_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="e43fenn_c"><circle cx="48" cy="48" r="46"/></clipPath>
+  </defs>
+  <circle cx="48" cy="48" r="46" fill="#EAE5DA"/>
+  <g clip-path="url(#e43fenn_c)">
+    <g transform="translate(34,106) scale(0.46)">
+      <path d="M-16,-160 V-210" fill="none" stroke="#5B5548" stroke-width="4" stroke-linecap="round"/>
+      <path d="M-16,-210 L16,-199 L-16,-188 Z" fill="#E0A82E"/>
+      <g filter="url(#e43fenn_sh)">
+        <path d="M-34,-145 L34,-148 L36,-58 L-34,-56 Z" fill="#4C1D95"/>
+        <path d="M-34,-145 L34,-148 L26,-170 L-26,-168 Z" fill="#6A3BBE"/>
+        <path d="M-34,-145 L-34,-56 L-64,-100 Z" fill="#3B1578"/>
+        <path d="M34,-148 L36,-58 L66,-104 Z" fill="#5727A6"/>
+        <path d="M-34,-56 L36,-58 L26,-40 L-24,-38 Z" fill="#2F1063"/>
+      </g>
+      <circle cx="-13" cy="-112" r="8.500" fill="#F7F5F0"/><circle cx="13" cy="-113" r="8.500" fill="#F7F5F0"/>
+      <circle cx="-10.500" cy="-112" r="4" fill="#1F2430"/><circle cx="15.500" cy="-113" r="4" fill="#1F2430"/>
+      <path d="M-5,-90 q6,5 12,0" fill="none" stroke="#F7F5F0" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <!-- the set square -->
+    <path fill-rule="evenodd" d="M64,70 L88,70 L64,46 Z M68,66 L78.500,66 L68,55.500 Z" fill="#7C3AED" fill-opacity="0.82" filter="url(#e43fenn_sh)"/>
+    <path d="M54,66 Q58,76 65,70" fill="none" stroke="#2F1063" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</g>
+</svg>
