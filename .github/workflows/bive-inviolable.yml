@@ -1,0 +1,31 @@
+# Bive: a delegate's pull request (branch issue/*) never changes Bive's inviolable files (AGENTS.md › Inviolable prompts).
+# The coordinator's own pull requests carry the label `coordinator` (set by the coordinator, never by a delegate) and
+# are exempt: changing an inviolable file is its job.
+name: bive-inviolable
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+permissions:
+  contents: read
+jobs:
+  check:
+    if: startsWith(github.head_ref, 'issue/') && !contains(github.event.pull_request.labels.*.name, 'coordinator')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: No inviolable file changed
+        run: |
+          changed=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" | grep -E \
+            '^(\.bive/registry-id$|\.bive/gate\.json$|\.bive/prompts/|\.bive/templates/|\.opencode/plugins?/|\.github/workflows/bive-|opencode\.jsonc$|AGENTS\.md$)' || true)
+          # A file byte-identical to the default branch is not a change of this pull request: a sync of the default
+          # branch into a milestone carries the default branch's own inviolable files (issue #198).
+          default="origin/${{ github.event.repository.default_branch }}"
+          bad=""
+          for f in $changed; do
+            if ! git diff --quiet "$default" HEAD -- "$f"; then bad="$bad$f"$'\n'; fi
+          done
+          if [ -n "$bad" ]; then
+            echo "::error::A delegate's pull request changes Bive's inviolable files:"; printf '%s' "$bad"; exit 1
+          fi

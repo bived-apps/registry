@@ -1,0 +1,77 @@
+name: Task
+description: A task one role can take. Required fields constrain this web form only; gh/API creation bypasses them, so the coordinator rejects incomplete tasks before gate 1 or delegation.
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Required fields are checked by this web form only. An issue created with `gh` or the API bypasses them, so the
+        coordinator reads every task and rejects an incomplete one before gate 1 and before delegating it. This form
+        does not prevent an API-created issue; it only makes a complete task the easy path.
+        Generic bugs and questions need no form: open a blank issue, or follow the route in `docs/COORDINATING.md`.
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What the task changes and why, as one bounded outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Files
+      description: Every file the task may create, change or delete, with what changes in each.
+    validations:
+      required: true
+  - type: dropdown
+    id: work_type
+    attributes:
+      label: Role / work type
+      description: Who does this work; choose one. In signatures, 💻 marks a delegate and 📋 a coordinator.
+      options:
+        - Delegate work
+        - Coordinator work
+    validations:
+      required: true
+  - type: textarea
+    id: done_when
+    attributes:
+      label: Done when
+      description: Observable conditions that make the task finished.
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: Checks
+      description: Commands to run and what they must show, including the tests of the files touched.
+    validations:
+      required: true
+  - type: textarea
+    id: read
+    attributes:
+      label: Read first
+      description: Optional. Rules, prompts and existing files to read before starting.
+    validations:
+      required: false
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps
+      description: Optional. The order of work, when it does not follow from the files.
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Optional. What was observed, measurements, decisions already taken.
+    validations:
+      required: false
+  - type: textarea
+    id: docs
+    attributes:
+      label: Docs to update
+      description: Optional. Documentation that changes in the same commit.
+    validations:
+      required: false

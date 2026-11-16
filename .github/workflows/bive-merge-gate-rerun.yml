@@ -1,0 +1,64 @@
+name: bive-merge-gate-rerun
+
+on:
+  workflow_run:
+    workflows: [bive-tests, bive-inviolable]
+    types: [completed]
+
+permissions:
+  actions: write
+
+jobs:
+  rerun-merge-gate:
+    if: github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Re-run merge-gate for completed pull request checks
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          runs_json=$(gh api "repos/${REPO}/actions/workflows/bive-merge-gate.yml/runs?head_sha=${HEAD_SHA}&event=pull_request_target&per_page=100")
+          ids=$(printf '%s' "$runs_json" | node -e '
+            const fs = require("fs");
+            const data = JSON.parse(fs.readFileSync(0, "utf8"));
+            const runs = Array.isArray(data.workflow_runs) ? data.workflow_runs : [];
+            const latest = new Map();
+            for (const run of runs) {
+              const prs = Array.isArray(run.pull_requests) ? run.pull_requests : [];
+              if (prs.length === 0) continue;
+              for (const pr of prs) {
+                const n = pr && pr.number;
+                if (!Number.isInteger(n)) continue;
+                const prev = latest.get(n);
+                if (!prev || (run.id || 0) > (prev.id || 0)) latest.set(n, run);
+              }
+            }
+            for (const run of latest.values()) {
+              if (run.conclusion === "success") continue;
+              process.stdout.write(String(run.id) + "\n");
+            }
+          ')
+          if [ -z "$ids" ]; then
+            echo "No merge-gate runs to re-run."
+            exit 0
+          fi
+          for id in $ids; do
+            for i in $(seq 1 24); do
+              status=$(gh api "repos/${REPO}/actions/runs/${id}" --jq '.status')
+              if [ "$status" != "in_progress" ] && [ "$status" != "queued" ] && [ "$status" != "waiting" ] && [ "$status" != "requested" ] && [ "$status" != "pending" ]; then
+                break
+              fi
+              sleep 5
+            done
+            status=$(gh api "repos/${REPO}/actions/runs/${id}" --jq '.status')
+            if [ "$status" = "in_progress" ] || [ "$status" = "queued" ] || [ "$status" = "waiting" ] || [ "$status" = "requested" ] || [ "$status" = "pending" ]; then
+              echo "merge-gate run ${id} still ${status}; skipping rerun"
+              continue
+            fi
+            echo "Re-running merge-gate run ${id}"
+            gh api -X POST "repos/${REPO}/actions/runs/${id}/rerun"
+          done

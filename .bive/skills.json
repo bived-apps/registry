@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "roles": {
+    "advisor": [
+      "bive-ask-owner"
+    ],
+    "coordinator": [
+      "bive-ask-owner",
+      "bive-registry-optin",
+      "bive-pick-model"
+    ],
+    "delegate": [
+      "bive-ask-owner"
+    ]
+  },
+  "skills": {
+    "bive-ask-owner": {
+      "source": "project",
+      "path": ".opencode/skills/bive-ask-owner",
+      "revision": "913cd83c6230e0700023c6698a0d66926a42593c16e69644350aa6646dbabd7b"
+    },
+    "bive-registry-optin": {
+      "source": "project",
+      "path": ".opencode/skills/bive-registry-optin",
+      "revision": "152045e052a6a619ddd707461acdbaf9986f4cae3ca20b33b89ab865e5ccbc44"
+    },
+    "bive-pick-model": {
+      "source": "project",
+      "path": ".opencode/skills/bive-pick-model",
+      "revision": "efd32de3e3b2980d19f4e9ca755de9f6dfb59c2f9ce51d2a663c4cb877261175"
+    }
+  }
+}

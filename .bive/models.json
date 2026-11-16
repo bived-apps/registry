@@ -1,0 +1,6 @@
+{
+  "coordinator": ["opencode/minimax-m3.1-flash-free", "anthropic/claude-fable-5-2", "anthropic/claude-opus-5-5", "opencode-go/beam-free"],
+  "delegate": ["opencode-go/beam-free", "opencode/iceman-free", "opencode/longcat-2.5-free",
+               "opencode/nemotron-3.5-lightning-free", "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
+               "anthropic/claude-fable-5-2"]
+}
