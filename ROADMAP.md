@@ -10,8 +10,9 @@ here is committed with the code it describes (an item started → `doing`, finis
 
 ## Epics
 
-### 1. Bive install (owner) — doing, S
+### 1. Bive install (owner) — done in 243f83d, S
 - Bive v0.2.4's gate, guard and role prompts (install/bive).
 
-### 2. Canonical model names (owner) — todo, S
-- The Worker reports canonical model ids (a separate pull request after the install).
+### 2. Canonical model names (owner) — done in 0080b80, S
+- The Worker stores each model under its canonical name (models.dev, `claude-agent/` table; `canonical.js`, #13).
+  Live once the owner deploys.
