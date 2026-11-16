@@ -24,7 +24,8 @@ Bive asks in return; the licence (MIT) does not require it.
   server sets the day).
 - **Violations are reported once per process**: sessions that share one OpenCode process share the guard's counter and
   the reported part (field report, 2026-11-16). Before this fix, each new session reported the running total again, so a day when
-  many sessions shared one process shows too many violations: read those counts as upper bounds.
+  many sessions shared one process showed too many violations; on 2026-11-16 the registry's stored violation counts
+  were reset to 0, so every count shown dates from the fix. Only the guard's refusals count, never a red CI check.
 - **What is kept**: one row per report (id, day, the four numbers) and one per agent and model. The server stores `claude-agent/` routes under `anthropic/` at once, and a daily job renames every other stored route to its canonical name (models.dev's `canonical_model_id`); a route with none, or one the job has not seen yet, shows as sent. The server never reads or stores the IP
   address; the public page shows projects as #1, #2… and never their id.
 - **What is shown**: only projects that reported at least three sessions on two different days, and the server
