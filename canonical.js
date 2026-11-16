@@ -1,9 +1,8 @@
 // Canonical model names for the registry: models.dev's canonical_model_id, with a
 // built-in table for the claude-agent/ routes (same table as Bive's
-// .opencode/plugins/token-ratio/lib.ts, bive#411).
+// .opencode/plugins/token-ratio/lib.ts, bive#411). The catalogue is read by the
+// daily cron, never by a report.
 export const CATALOGUE_URL = "https://models.dev/api.json";
-export const TTL_MS = 24 * 3600 * 1000;
-export const RETRY_MS = 3600 * 1000;
 export const FETCH_TIMEOUT_MS = 5000;
 
 export const CLAUDE_AGENT_SHORT = {
@@ -53,56 +52,52 @@ export function canonicalName(route, map) {
   return route;
 }
 
-export function createCanonicalizer({ fetch, now = Date.now, log = console.warn } = {}) {
-  let state = null;        // { map, at } on success
-  let failureAt = null;
-  let pending = null;
-
-  async function tryFetch() {
-    const t = now();
-    const cacheValid = state !== null && t - state.at < TTL_MS;
-    if (cacheValid) return;
-    if (failureAt !== null && t - failureAt < RETRY_MS) return;
-    if (pending) {
-      await pending;
-      return;
+export async function fetchCanonicalMap({ fetch, log = console.warn } = {}) {
+  try {
+    const res = await fetch(CATALOGUE_URL, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
+    if (!res || !res.ok) {
+      throw new Error(res ? `HTTP ${res.status}` : "no response");
     }
-    pending = (async () => {
-      try {
-        const res = await fetch(CATALOGUE_URL, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
-        if (!res || !res.ok) {
-          throw new Error(res ? `HTTP ${res.status}` : "no response");
-        }
-        let parsed;
-        try {
-          parsed = await res.json();
-        } catch (err) {
-          throw err;
-        }
-        const map = buildCanonicalMap(parsed);
-        state = { map, at: now() };
-        failureAt = null;
-      } catch (err) {
-        const reason = (err && typeof err.message === "string" && err.message !== "")
-          ? err.message : String(err);
-        log(`registry: models.dev catalogue unavailable (${reason}); storing routes as sent`);
-        failureAt = now();
-      } finally {
-        pending = null;
-      }
-    })();
-    await pending;
+    let parsed;
+    try {
+      parsed = await res.json();
+    } catch (err) {
+      throw err;
+    }
+    return buildCanonicalMap(parsed);
+  } catch (err) {
+    const reason = (err && typeof err.message === "string" && err.message !== "")
+      ? err.message : String(err);
+    log(`registry: models.dev catalogue unavailable (${reason}); nothing renamed`);
+    return null;
   }
+}
 
-  return {
-    async names(routes) {
-      try {
-        await tryFetch();
-      } catch {
-        // names never throws
-      }
-      const map = state ? state.map : undefined;
-      return (Array.isArray(routes) ? routes : []).map((r) => canonicalName(r, map));
-    },
-  };
+export async function renameStored(db, map) {
+  const { results } = await db.prepare("SELECT DISTINCT model FROM llm").all();
+  const statements = [];
+  for (const row of (results || [])) {
+    const model = row.model;
+    const name = canonicalName(model, map);
+    if (name !== model) {
+      statements.push(db.prepare("UPDATE llm SET model = ? WHERE model = ?").bind(name, model));
+    }
+  }
+  if (statements.length) {
+    await db.batch(statements);
+  }
+  return statements.length;
+}
+
+export async function refreshCanonicalNames(env, { fetch, log = console.warn } = {}) {
+  try {
+    const map = await fetchCanonicalMap({ fetch, log });
+    if (map === null) return 0;
+    return await renameStored(env.DB, map);
+  } catch (err) {
+    const reason = (err && typeof err.message === "string" && err.message !== "")
+      ? err.message : String(err);
+    log(`registry: renaming models failed (${reason})`);
+    return 0;
+  }
 }
