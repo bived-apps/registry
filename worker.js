@@ -3,9 +3,7 @@
 // The client's IP is never read or stored; the day is the server's, so no client clock is kept either.
 import page from "./index.html";
 import { readReportBody, ReportBodyTooLargeError } from "./report-body.js";
-import { createCanonicalizer } from "./canonical.js";
-
-const canonical = createCanonicalizer({ fetch: (url, init) => fetch(url, init) });
+import { canonicalName, refreshCanonicalNames } from "./canonical.js";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 const MAX_TOKENS = 10_000_000;            // per report
@@ -59,10 +57,9 @@ async function report(request, env) {
   await env.DB.prepare("INSERT INTO sessions (project, day, human, agent, violations, loc) VALUES (?, ?, ?, ?, ?, ?)")
     .bind(b.project, day, b.human, b.agent, b.violations ?? 0, b.loc).run();
   if (llm.length) {
-    const names = await canonical.names(llm.map((l) => l.model));
-    await env.DB.batch(llm.map((l, i) => env.DB.prepare(
+    await env.DB.batch(llm.map((l) => env.DB.prepare(
       "INSERT INTO llm (project, day, agent, model, tokens, input, ms, replies) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
-      .bind(b.project, day, l.agent, names[i], l.tokens, l.input ?? 0, l.ms ?? 0, l.replies ?? 0)));
+      .bind(b.project, day, l.agent, canonicalName(l.model), l.tokens, l.input ?? 0, l.ms ?? 0, l.replies ?? 0)));
   }
   return new Response(null, { status: 204 });
 }
@@ -122,5 +119,8 @@ export default {
       return new Response(page, { headers: { "content-type": "text/html; charset=utf-8" } });
     }
     return json({ error: "not found" }, 404);
+  },
+  scheduled(controller, env, ctx) {
+    ctx.waitUntil(refreshCanonicalNames(env, { fetch: (url, init) => fetch(url, init) }));
   },
 };
