@@ -1,3 +1,5 @@
+<img src="assets/registry-mark.svg" width="96" alt="Registry's mark: a bar chart traced by small paper companions, the owner on top of the tallest bar">
+
 # Bive registry
 
 Bive's registry: the Cloudflare Worker (`worker.js`, D1 `schema.sql`, `wrangler.toml`; deploy steps at the top of
