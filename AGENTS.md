@@ -128,7 +128,9 @@ Generic, whatever the language (owner, 2026-11-08, taken from the practice of th
   workflows. If one is wrong, it says so in its report. The guard
   plugin refuses these writes (each refusal counts as a violation in the registry) and the `bive-inviolable` check
   fails any `issue/*` pull request that touches them, unless it carries the label `coordinator`: the coordinator's
-  own pull requests, the only ones that may change these files (only the coordinator sets that label).
+  own pull requests, the only ones that may change these files (only the coordinator sets that label). Only the
+  guard's refusals count as violations: a red CI check (a missing label, a re-run) is never counted, since a label
+  the owner or coordinator has not set yet is not the agent's mistake.
 - **Signed actions (issue #130; the App exists since 2026-11-14, `docs/GITHUB-APP.md`)**: every GitHub action an agent
   takes other than pushing its own branch (a comment, a label, a branch update, a re-run, a review) is preceded or
   carried by a comment signed with its role and model (`— <role> <provider/model>`), and an agent never acts on a pull
