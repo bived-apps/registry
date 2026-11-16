@@ -7,6 +7,10 @@ name = "bive-registry"
 main = "worker.js"
 compatibility_date = "2026-10-01"
 
+# Once a day: rename stored model routes to their canonical names (models.dev; canonical.js).
+[triggers]
+crons = ["17 3 * * *"]
+
 [[d1_databases]]
 binding = "DB"
 database_name = "bive-registry"
