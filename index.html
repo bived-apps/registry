@@ -128,7 +128,10 @@ function renderChart() {
 function chart(days) {
   const box = document.getElementById("chart");
   const W = (box && box.clientWidth) || 600;
-  const H = (box && box.clientHeight) || 180;
+  // A fixed height: the box has none of its own, so its clientHeight is whatever it holds now (the one-line
+  // "No session reported yet." on the first draw, then the previous chart), which shrank the chart to ~23 px and
+  // made H - 30 negative, so every bar got a negative height and was not drawn.
+  const H = 180;
   const pad = 36;
   const max = Math.max(1, ...days.map((d) => d.agent + d.human));
   const bw = Math.min(14, (W - pad) / Math.max(1, days.length));
