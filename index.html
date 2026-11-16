@@ -38,8 +38,7 @@ th { font-weight: 600; font-size: 13px; color: var(--muted); }
 td { font-family: var(--mono); font-size: 13px; }
 .status { font: 12px var(--mono); color: var(--muted); }
 .viz { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
-.viz canvas { display: block; width: 100%; height: 380px; cursor: grab; touch-action: none; }
-.viz canvas:active { cursor: grabbing; }
+.viz svg { display: block; max-width: 100%; height: auto; }
 .controls { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin-top: 8px; font: 13px var(--mono); color: var(--muted); }
 .controls select { font: 13px var(--mono); color: var(--fg); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; max-width: 100%; }
 .controls input { flex: 1; min-width: 140px; accent-color: var(--agent); }
@@ -66,17 +65,14 @@ td { font-family: var(--mono); font-size: 13px; }
 
   <section class="tiles" id="tiles"></section>
 
-  <section id="cubeSection">
-    <h2>Cascade in five dimensions</h2>
-    <p class="hint">Each app is a point. Human tokens run right, agent tokens up, lines of code in depth, the colour is its
-      violations, and the slider is time: press Play to watch the apps fall in as they start and drift as they grow.
-      Axes are logarithmic. Drag to turn the cube.</p>
-    <div class="viz"><canvas id="cube" aria-label="Apps in five dimensions: human tokens, agent tokens, lines of code, violations, time"></canvas></div>
+  <section id="leverageSection">
+    <h2>Leverage</h2>
+    <p class="hint">Each project is a dot: human tokens across, agent tokens up, both on log scales. The dashed diagonals
+      mark 1 human token for 10, 100, 1000 agent tokens: the higher a dot sits above them, the more its agents do per
+      human token. Size is lines of code, colour is guard violations per session, and the faint line is its daily history.</p>
+    <div class="viz" id="leverage"></div>
     <div class="controls">
-      <button id="play" type="button">Play</button>
-      <input id="time" type="range" min="0" max="0" step="0.01" value="0" aria-label="Day">
-      <span id="when">—</span>
-      <span class="scale">violations 0 <i></i> many</span>
+      <span class="scale">violations per session: few <i></i> many</span>
       <select id="llm" aria-label="Main LLM"><option value="">All LLMs</option></select>
     </div>
   </section>
@@ -145,126 +141,71 @@ function chart(days) {
 }
 
 
-// The 5D cascade: x human, y agent, z lines of code (log10), colour violations, time the slider.
-const cube = { rows: [], filter: "", paths: [], days: [], t: 0, yaw: -0.6, pitch: 0.35, playing: false, max: [1, 1, 1, 1], range: [[0, 1], [0, 1], [0, 1]] };
-const canvas = document.getElementById("cube"), ctx = canvas.getContext("2d");
-const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const L = (v) => Math.log10(1 + v);
-const lg = (v, i) => { const [lo, hi] = cube.range[i]; return hi > lo ? (L(v) - lo) / (hi - lo) * 2 - 1 : 0; };   // -1..1 over the data
-const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
-function mix(a, b, k) {
-  const p = (c) => c.match(/\w\w/g).map((x) => parseInt(x, 16));
+// The leverage chart: each project is a dot at its human tokens (across) and agent tokens (up), both on log scales.
+// Diagonal guides mark 1 human token : 10, 100, 1000 agent tokens. The dot's size is its lines of code, its colour its
+// guard violations per session, and a faint trail is its daily history (cumulative, so it moves up and right).
+const lev = { rows: [], paths: [], filter: "" };
+function mixHex(a, b, k) {
+  const p = (c) => (c.match(/[0-9a-f]{2}/gi) || ["00", "00", "00"]).map((x) => parseInt(x, 16));
   const [A, B] = [p(a), p(b)];
   return "rgb(" + A.map((v, i) => Math.round(v + (B[i] - v) * k)).join(",") + ")";
 }
-function colour(v) {
-  if (!v) return css("--warn");
-  const k = Math.min(1, Math.log10(1 + v) / Math.log10(1 + cube.max[3]));
-  return mix(css("--warn"), css("--bad"), k);
-}
-function setCube(paths) {
-  cube.paths = paths;
-  cube.days = [...new Set(paths.flat().map((p) => p[0]))].sort();
-  const all = paths.flat();
-  cube.max = [1, 2, 3, 4].map((i) => Math.max(1, ...all.map((p) => p[i])));
-  cube.range = [1, 2, 3].map((i) => [Math.min(...all.map((p) => L(p[i]))), L(cube.max[i - 1])]);
-  const n = Math.max(0, cube.days.length - 1);
-  const slider = document.getElementById("time");
-  const atEnd = cube.t >= +slider.max;
-  slider.max = n;
-  if (!cube.playing && atEnd) cube.t = n;
-  slider.value = cube.t;
-  draw();
-}
-function stateAt(path, t) {            // the point at fractional day index t, and how far it has fallen in
-  const idx = path.map((p) => cube.days.indexOf(p[0]));
-  if (!path.length || t < idx[0]) return null;
-  let k = 0;
-  while (k + 1 < path.length && idx[k + 1] <= t) k++;
-  let p = path[k].slice(1);
-  if (k + 1 < path.length) {
-    const f = (t - idx[k]) / (idx[k + 1] - idx[k]);
-    p = p.map((v, i) => v + (path[k + 1][i + 1] - v) * Math.max(0, Math.min(1, f)));
+function leverage(rows, paths, W, opt = {}) {
+  const H = 370, left = 58, right = 18, top = 30, bottom = 36;
+  const low = opt.low || "#0F766E", high = opt.high || "#B45309", ink = opt.ink || "#1F2430", line = opt.line || "#E5E2DA";
+  const keep = paths.map((p, i) => ({ i, p: (p || []).filter((q) => q[1] > 0 && q[2] > 0).slice(-30), row: rows[i] || {} }))
+    .filter((d) => d.p.length && (!opt.filter || d.row.llm === opt.filter));
+  let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Agent tokens against human tokens per project, log scales">`;
+  if (!keep.length) return s + `<text x="${left}" y="${H / 2}" fill="${ink}">No project reported yet.</text></svg>`;
+  const all = keep.flatMap((d) => d.p);
+  const dec = (vals) => {
+    let lo = Math.floor(Math.log10(Math.min(...vals))), hi = Math.ceil(Math.log10(Math.max(...vals)));
+    if (hi - lo < 2) { lo -= 1; hi += 1; }
+    return [lo, hi];
+  };
+  const [xl, xh] = dec(all.map((q) => q[1])), [yl, yh] = dec(all.map((q) => q[2]));
+  const X = (v) => left + (Math.log10(v) - xl) / (xh - xl) * (W - left - right);
+  const Y = (v) => top + (1 - (Math.log10(v) - yl) / (yh - yl)) * (H - top - bottom);
+  const big = (k) => fmt(Math.pow(10, k));
+  for (let k = xl; k <= xh; k++) s += `<line x1="${X(10 ** k)}" x2="${X(10 ** k)}" y1="${top}" y2="${H - bottom}" stroke="${line}"/><text x="${X(10 ** k) - 10}" y="${H - bottom + 16}" fill="${ink}" font-size="11">${big(k)}</text>`;
+  for (let k = yl; k <= yh; k++) s += `<line x1="${left}" x2="${W - right}" y1="${Y(10 ** k)}" y2="${Y(10 ** k)}" stroke="${line}"/><text x="4" y="${Y(10 ** k) + 4}" fill="${ink}" font-size="11">${big(k)}</text>`;
+  s += `<text x="${W - right}" y="${H - 4}" text-anchor="end" fill="${ink}" font-size="12">human tokens →</text>`;
+  s += `<text x="4" y="12" fill="${ink}" font-size="12">↑ agent tokens</text>`;
+  // Ratio guides: agent = r × human, a straight diagonal on log scales, clipped to the plot.
+  for (const r of [10, 100, 1000, 10000]) {
+    const g = Math.log10(r);
+    const a = Math.max(xl, yl - g), b = Math.min(xh, yh - g);
+    if (b <= a) continue;
+    const [x1, y1, x2, y2] = [X(10 ** a), Y(10 ** (a + g)), X(10 ** b), Y(10 ** (b + g))];
+    s += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${ink}" stroke-opacity="0.25" stroke-dasharray="4 4"/>`;
+    s += `<text x="${x2 - 4}" y="${y2 + 14}" text-anchor="end" fill="${ink}" fill-opacity="0.6" font-size="11">1 : ${fmt(r)}</text>`;
   }
-  return { p, fall: ease((t - idx[0]) / 0.8), trail: path.slice(0, k + 1).map((q) => q.slice(1)).concat([p]) };
-}
-function project(x, y, z, W, H) {
-  const cy = Math.cos(cube.yaw), sy = Math.sin(cube.yaw), cp = Math.cos(cube.pitch), sp = Math.sin(cube.pitch);
-  const x1 = x * cy - z * sy, z1 = x * sy + z * cy;
-  const y1 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;
-  const s = Math.min(W, H) * 0.26 * (5 / (5 + z2));
-  return [W / 2 + x1 * s, H / 2 - y1 * s, z2, s];
-}
-function draw() {
-  const dpr = devicePixelRatio || 1, W = canvas.clientWidth, H = canvas.clientHeight;
-  if (canvas.width !== Math.round(W * dpr) || canvas.height !== Math.round(H * dpr)) { canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); }
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.clearRect(0, 0, W, H);
-  const P = (x, y, z) => project(x, y, z, W, H);
-  ctx.strokeStyle = css("--line"); ctx.lineWidth = 1;
-  const corners = [];
-  for (const x of [-1, 1]) for (const y of [-1, 1]) for (const z of [-1, 1]) corners.push([x, y, z]);
-  for (const a of corners) for (const b of corners) {
-    if (a.filter((v, i) => v !== b[i]).length !== 1 || a.join() > b.join()) continue;   // each edge once
-    const A = P(...a), B = P(...b);
-    ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke();
+  const maxLoc = Math.max(1, ...keep.map((d) => d.p.at(-1)[3] || 0));
+  const rate = (row) => row.sessions ? row.violations / row.sessions : 0;
+  const maxRate = Math.max(1e-9, ...keep.map((d) => rate(d.row)));
+  for (const d of keep) {
+    if (d.p.length > 1) s += `<polyline points="${d.p.map((q) => `${X(q[1])},${Y(q[2])}`).join(" ")}" fill="none" stroke="${ink}" stroke-opacity="0.3" stroke-width="1.5"/>`;
   }
-  ctx.fillStyle = css("--muted"); ctx.font = "12px " + css("--sans");
-  const label = (t, x, y, z) => { const q = P(x, y, z); ctx.fillText(t, q[0] + 4, q[1] + 4); };
-  label("human " + fmt(cube.max[0]) + " →", 1, -1, -1);
-  label("agent " + fmt(cube.max[1]), -1, 1, -1);
-  label("lines " + fmt(cube.max[2]), -1, -1, 1);
-  const pts = [];
-  cube.paths.forEach((path, i) => {
-    if (cube.filter && cube.rows[i]?.llm !== cube.filter) return;
-    const st = stateAt(path, cube.t);
-    if (!st) return;
-    const xyz = (q) => [lg(q[0], 0), lg(q[1], 1), lg(q[2], 2)];
-    const [x, y, z] = xyz(st.p);
-    ctx.strokeStyle = css("--muted"); ctx.globalAlpha = 0.35; ctx.beginPath();
-    st.trail.forEach((q, j) => { const r = P(...xyz(q)); j ? ctx.lineTo(r[0], r[1]) : ctx.moveTo(r[0], r[1]); });
-    ctx.stroke(); ctx.globalAlpha = 1;
-    const yy = y + (1 - st.fall) * 3;              // falls in from above the cube
-    pts.push({ i, q: P(x, yy, z), v: st.p[3], alpha: Math.min(1, 0.2 + st.fall) });
-  });
-  pts.sort((a, b) => b.q[2] - a.q[2]);
-  for (const d of pts) {
-    ctx.globalAlpha = d.alpha; ctx.fillStyle = colour(d.v);
-    ctx.beginPath(); ctx.arc(d.q[0], d.q[1], Math.max(3, d.q[3] / 22), 0, 7); ctx.fill();
-    ctx.globalAlpha = 1; ctx.fillStyle = css("--fg"); ctx.font = "600 12px " + css("--sans"); ctx.fillText("#" + (d.i + 1), d.q[0] + 7, d.q[1] - 6);
+  for (const d of keep) {
+    const q = d.p.at(-1), x = X(q[1]), y = Y(q[2]);
+    const rad = 5 + 11 * Math.sqrt((q[3] || 0) / maxLoc);
+    const c = mixHex(low, high, Math.sqrt(rate(d.row) / maxRate));
+    const tip = `#${d.i + 1}: 1 human : ${fmt(Math.round(q[2] / q[1]))} agent tokens, ${rate(d.row).toFixed(1)} violations per session, ${fmt(q[3] || 0)} lines` + (d.row.llm ? `, ${d.row.llm}` : "");
+    s += `<circle cx="${x}" cy="${y}" r="${rad}" fill="${c}" fill-opacity="0.85" stroke="${ink}" stroke-width="1"><title>${tip}</title></circle>`;
+    s += `<text x="${x + rad + 3}" y="${y + 4}" fill="${ink}" font-size="12" font-weight="600">#${d.i + 1}</text>`;
   }
-  const day = cube.days[Math.min(cube.days.length - 1, Math.round(cube.t))];
-  document.getElementById("when").textContent = day || "no data yet";
+  return s + "</svg>";
 }
-let last = 0;
-function tick(now) {
-  if (!cube.playing) return;
-  const dt = last ? (now - last) / 1000 : 0; last = now;
-  const n = cube.days.length - 1;
-  cube.t = Math.min(n, cube.t + dt * Math.max(1, n) / 10);   // the whole history in ten seconds
-  document.getElementById("time").value = cube.t;
-  draw();
-  if (cube.t >= n) { cube.playing = false; document.getElementById("play").textContent = "Play"; return; }
-  requestAnimationFrame(tick);
+function drawLeverage() {
+  const box = document.getElementById("leverage");
+  if (!box) return;
+  const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  box.innerHTML = leverage(lev.rows, lev.paths, box.clientWidth || 600,
+    { filter: lev.filter, low: css("--warn"), high: css("--bad"), ink: css("--fg"), line: css("--line") });
 }
-document.getElementById("play").onclick = () => {
-  cube.playing = !cube.playing;
-  document.getElementById("play").textContent = cube.playing ? "Pause" : "Play";
-  if (cube.playing) { if (cube.t >= cube.days.length - 1) cube.t = -1; last = 0; requestAnimationFrame(tick); }
-};
-document.getElementById("llm").onchange = (e) => { cube.filter = e.target.value; draw(); };
-document.getElementById("time").oninput = (e) => { cube.t = +e.target.value; draw(); };
-let drag = null;
-canvas.onpointerdown = (e) => { drag = [e.clientX, e.clientY]; canvas.setPointerCapture(e.pointerId); };
-canvas.onpointermove = (e) => {
-  if (!drag) return;
-  cube.yaw += (e.clientX - drag[0]) * 0.01;
-  cube.pitch = Math.max(-1.4, Math.min(1.4, cube.pitch + (e.clientY - drag[1]) * 0.01));
-  drag = [e.clientX, e.clientY]; draw();
-};
-canvas.onpointerup = () => { drag = null; };
-addEventListener("resize", () => { draw(); renderChart(); });
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+document.getElementById("llm").onchange = (e) => { lev.filter = e.target.value; drawLeverage(); };
+addEventListener("resize", () => { drawLeverage(); renderChart(); });
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawLeverage);
 
 async function load() {
   try {
@@ -274,21 +215,22 @@ async function load() {
       [d.projects, "projects"], [d.sessions, "sessions"], [fmt(d.human), "human tokens"], [fmt(d.agent), "agent tokens"],
       [ratio(d.human, d.agent), "human : agent"], [fmt(d.loc), "lines of code"], [perLine(d.agent, d.loc), "agent tokens per line"], [d.violations, "guard violations"],
     ].map(([v, l]) => `<div class="tile"><b>${v}</b><span>${l}</span></div>`).join("");
-    cube.rows = d.rows;
+    lev.rows = d.rows || [];
     const sel = document.getElementById("llm"), keep = sel.value;
     const llms = [...new Set(d.rows.map((r) => r.llm).filter(Boolean))].sort();
     sel.replaceChildren(new Option("All LLMs", ""), ...llms.map((m) => new Option(m, m)));
     sel.value = llms.includes(keep) ? keep : "";
-    cube.filter = sel.value;
+    lev.filter = sel.value;
     const n = (d.rows || []).length;
-    const cubeSection = document.getElementById("cubeSection");
+    const leverageSection = document.getElementById("leverageSection");
     const simple = document.getElementById("simpleProjects");
     if (n >= 1) {
-      cubeSection.hidden = false;
+      leverageSection.hidden = false;
       simple.hidden = true;
-      setCube(d.paths || []);
+      lev.paths = d.paths || [];
+      drawLeverage();
     } else {
-      cubeSection.hidden = true;
+      leverageSection.hidden = true;
       simple.hidden = false;
       document.getElementById("simpleRows").innerHTML = (d.rows || []).map((p, i) => `<tr><td>#${i + 1}</td>
         <td>${p.sessions}</td><td>${fmt(p.human)}</td><td>${fmt(p.agent)}</td><td>${fmt(p.loc)}</td><td>${p.violations}</td></tr>`).join("") || "<tr><td>—</td></tr>";
