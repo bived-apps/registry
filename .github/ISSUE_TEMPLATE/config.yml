@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions and coordination
+    url: https://github.com/bived-apps/bive/blob/bived/docs/COORDINATING.md
+    about: How tasks, gates and roles work; read this before opening a generic issue about the process.

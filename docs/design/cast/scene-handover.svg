@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+  <title id="t">Handover</title>
+  <desc id="d">Three moments read left to right, each on its own sheet of wall paper. First, an amber folder-shaped coordinator with a small mustard flag keeps a fan of cards in its pocket and holds out exactly one light violet card to a small light violet droplet, a delegate holding one paintbrush. Second, the droplet alone paints that one card on a stand. Third, the coordinator carries the finished card in both hands up to the human owner in a dark ink coat, who reaches for it; her pen hangs capped in her other hand, and the coordinator holds no pen.</desc>
+  <defs>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feOffset in="SourceAlpha" dx="4" dy="5" result="o"/>
+      <feFlood flood-color="#1F2430" flood-opacity="0.16"/>
+      <feComposite in2="o" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <g id="flag">
+      <path d="M0,0 V-50" fill="none" stroke="#5B5548" stroke-width="3" stroke-linecap="round"/>
+      <path d="M0,-50 L28,-41 L0,-32 Z" fill="#E0A82E"/>
+    </g>
+
+    <!-- Brae: an expanding folder, top edge folded over -->
+    <g id="brae3">
+      <path d="M-28,-44 V0 h-14 M28,-44 V0 h14" fill="none" stroke="#8A3F06" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <use href="#flag" x="-34" y="-226"/>
+      <g filter="url(#sh)">
+        <path d="M-50,-232 L46,-238 L80,-42 L-76,-42 Z" fill="#B45309"/>
+        <path d="M51,-207 L80,-42 L56,-42 Z" fill="#9A4507"/>
+        <path d="M-2,-197 L8,-198 L12,-42 L-6,-42 Z" fill="#9A4507"/>
+        <g>
+          <rect x="-11" y="-22" width="22" height="40" fill="#6D28D9" transform="translate(-45,-102) rotate(-8)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#4C1D95" transform="translate(-34,-102) rotate(6)"/>
+          <rect x="-11" y="-22" width="22" height="40" fill="#FFFDF8" transform="translate(-23,-99) rotate(20)"/>
+        </g>
+        <path d="M-69,-95 L-8,-98 L-14,-42 L-76,-42 Z" fill="#C8691F"/>
+        <path d="M-50,-232 L46,-238 L51,-207 L-55,-190 Z" fill="#DE9448"/>
+      </g>
+    </g>
+    <!-- Pim: a hand-cut droplet with a bent tip -->
+    <g id="pim">
+      <path d="M-16,-40 V0 h-12 M16,-40 V0 h12" fill="none" stroke="#5B33C9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <g filter="url(#sh)">
+        <path d="M-14,-146 L22,-150 L36,-124 L50,-88 L40,-52 L8,-34 L-30,-42 L-50,-78 L-40,-122 Z" fill="#8B5CF6"/>
+        <path d="M-14,-146 L22,-150 L20,-188 Z" fill="#B79CFB"/>
+        <path d="M-50,-78 L-30,-42 L8,-34 L-16,-66 Z" fill="#7446E0"/>
+        <path d="M-40,-122 L-14,-146 L-24,-116 Z" fill="#9D78F9"/>
+      </g>
+    </g>
+    <!-- Maren: the one human, in an ink coat with one lapel folded to its gold lining -->
+    <g id="maren">
+      <path d="M-40,0 a20,9 0 0 1 40,0 Z M4,0 a20,9 0 0 1 40,0 Z" fill="#1F2430"/>
+      <path d="M-30,-130 H-8 V-8 H-28 Z M8,-130 H30 V-8 H10 Z" fill="#3B4252"/>
+      <rect x="-9" y="-346" width="18" height="20" fill="#B87B54"/>
+      <g filter="url(#sh)">
+        <path d="M-48,-330 L48,-330 L64,-124 L-70,-112 Z" fill="#1F2430"/>
+        <path d="M48,-330 L64,-124 L40,-122 L34,-300 Z" fill="#2B3142"/>
+        <path d="M-14,-332 L14,-332 L0,-290 Z" fill="#F7F5F0"/>
+        <path d="M14,-332 L32,-330 L5,-258 L0,-290 Z" fill="#B8860B"/>
+      </g>
+      <path d="M4,-258 L2,-120" fill="none" stroke="#343B4D" stroke-width="2"/>
+      <circle cx="0" cy="-372" r="34" fill="#C68B62"/>
+      <path d="M36,-413 L52,-408 L58,-392 L48,-380 L34,-384 L28,-400 Z" fill="#2B2126"/>
+      <path d="M-33,-384 C-26,-420 30,-422 36,-384 L38,-356 L27,-360 C26,-382 6,-394 -33,-384 Z" fill="#2B2126"/>
+      <path d="M30,-416 L56,-378" fill="none" stroke="#B8860B" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="-17" cy="-370" r="3.500" fill="#1F2430"/><circle cx="5" cy="-370" r="3.500" fill="#1F2430"/>
+      <path d="M-13,-354 q6,4 11,0" fill="none" stroke="#1F2430" stroke-width="2.500" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <rect width="1600" height="900" fill="#F7F5F0"/>
+  <path d="M44,150 L520,140 L526,676 L38,682 Z" fill="#F1EDE4"/>
+  <path d="M566,136 L1022,146 L1026,680 L560,674 Z" fill="#F1EDE4"/>
+  <path d="M1054,148 L1520,132 L1586,190 L1590,672 L1048,680 Z" fill="#F1EDE4"/>
+  <path d="M1520,132 L1586,190 L1524,196 Z" fill="#E6E0D3"/>
+  <path d="M0,712 L1600,704 L1600,900 L0,900 Z" fill="#EAE5DA"/>
+  <g transform="translate(170,760) scale(1.4)">
+<ellipse cx="2" cy="5" rx="84" ry="7" fill="#DDD6C8"/>
+<use href="#brae3"/>
+<circle cx="-22" cy="-160" r="7" fill="#F7F5F0"/><circle cx="-19.5" cy="-159" r="3" fill="#1F2430"/><circle cx="26" cy="-163" r="7" fill="#F7F5F0"/><circle cx="28.5" cy="-162" r="3" fill="#1F2430"/>
+<path d="M-6,-141 q8,6 16,-1" fill="none" stroke="#F7F5F0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(112,-120) rotate(10)"><rect x="-13" y="-18" width="26" height="36" fill="#8B5CF6" filter="url(#sh)"/></g>
+<path d="M62,-140 Q82,-128 100,-120" fill="none" stroke="#8A3F06" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M-66,-140 Q-88,-116 -66,-100" fill="none" stroke="#8A3F06" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(432,760) scale(1.4)">
+<ellipse cx="2" cy="5" rx="48" ry="7" fill="#DDD6C8"/>
+<use href="#pim"/>
+<circle cx="-12" cy="-110" r="7" fill="#F7F5F0"/><circle cx="-14.5" cy="-110" r="3" fill="#1F2430"/><circle cx="14" cy="-111" r="7" fill="#F7F5F0"/><circle cx="11.5" cy="-111" r="3" fill="#1F2430"/>
+<path d="M-4,-92 q5,4 10,0" fill="none" stroke="#F7F5F0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M-46,-94 Q2,-64 48,-92" fill="none" stroke="#4A3A7A" stroke-width="2"/><circle cx="-12" cy="-80.500" r="5" fill="#EDE9FE"/><circle cx="3" cy="-78" r="5" fill="#E0A82E"/><circle cx="18" cy="-81" r="5" fill="#EDE9FE"/>
+<path d="M58,-58 L63,-114" fill="none" stroke="#C9A56A" stroke-width="5" stroke-linecap="round"/><path d="M63,-114 L64,-124" fill="none" stroke="#9CA3AF" stroke-width="8"/><path d="M60,-124 L68,-124 L66,-140 Z" fill="#2E2152"/>
+<path d="M44,-98 Q60,-98 60,-84" fill="none" stroke="#5B33C9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M-45,-94 Q-58,-104 -66,-112" fill="none" stroke="#5B33C9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(720,760) scale(1.4)">
+<ellipse cx="2" cy="5" rx="48" ry="7" fill="#DDD6C8"/>
+<path d="M100,-92 V0 m-12,0 h24" fill="none" stroke="#BDB5A6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="74" y="-160" width="52" height="70" fill="#8B5CF6" filter="url(#sh)"/>
+<path d="M84,-134 q7,-14 14,0 t13,-2" fill="none" stroke="#FFFDF8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<use href="#pim"/>
+<circle cx="-12" cy="-110" r="7" fill="#F7F5F0"/><circle cx="-9.5" cy="-111" r="3" fill="#1F2430"/><circle cx="14" cy="-111" r="7" fill="#F7F5F0"/><circle cx="16.5" cy="-112" r="3" fill="#1F2430"/>
+<path d="M-3,-92 h9" fill="none" stroke="#F7F5F0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M-46,-94 Q2,-64 48,-92" fill="none" stroke="#4A3A7A" stroke-width="2"/><circle cx="-12" cy="-80.500" r="5" fill="#EDE9FE"/><circle cx="3" cy="-78" r="5" fill="#E0A82E"/><circle cx="18" cy="-81" r="5" fill="#EDE9FE"/>
+<path d="M52,-92 L88,-120" fill="none" stroke="#C9A56A" stroke-width="5" stroke-linecap="round"/><path d="M88,-120 L97,-127" fill="none" stroke="#9CA3AF" stroke-width="8"/><path d="M94.500,-130.200 L99.500,-123.800 L112,-136 Z" fill="#2E2152"/><path d="M104,-131.500 L107.500,-128 L112,-136 Z" fill="#FFFDF8"/>
+<path d="M42,-102 Q58,-104 56,-94" fill="none" stroke="#5B33C9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M-45,-92 Q-62,-76 -52,-62" fill="none" stroke="#5B33C9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(1138,760) scale(1.4)">
+<ellipse cx="2" cy="5" rx="84" ry="7" fill="#DDD6C8"/>
+<use href="#brae3"/>
+<circle cx="-22" cy="-160" r="7" fill="#F7F5F0"/><circle cx="-19.5" cy="-161.5" r="3" fill="#1F2430"/><circle cx="26" cy="-163" r="7" fill="#F7F5F0"/><circle cx="28.5" cy="-164.5" r="3" fill="#1F2430"/>
+<path d="M-6,-141 q8,6 16,-1" fill="none" stroke="#F7F5F0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(112,-185) rotate(4)"><rect x="-13" y="-18" width="26" height="36" fill="#8B5CF6" filter="url(#sh)"/><path d="M-8,-2 q4,-9 8,0 t8,0" fill="none" stroke="#FFFDF8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+<path d="M52,-196 Q78,-204 100,-196" fill="none" stroke="#8A3F06" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58,-162 Q82,-160 100,-174" fill="none" stroke="#8A3F06" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(1465,760) scale(1.4)">
+<ellipse cx="2" cy="5" rx="78" ry="7" fill="#DDD6C8"/>
+<path d="M75,-192 L81,-146" fill="none" stroke="#6B7280" stroke-width="7" stroke-linecap="round"/><path d="M80,-158 L85,-116" fill="none" stroke="#1F2430" stroke-width="9" stroke-linecap="round"/><path d="M86.500,-150 L89.500,-126" fill="none" stroke="#B8860B" stroke-width="2" stroke-linecap="round"/>
+<use href="#maren"/>
+<path d="M44,-316 L64,-252 L73,-200" fill="none" stroke="#343B4D" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/><circle cx="74" cy="-196" r="10" fill="#C68B62"/>
+<path d="M-44,-316 L-70,-250 L-98,-192" fill="none" stroke="#343B4D" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-100" cy="-188" r="10" fill="#C68B62"/>
+  </g>
+</svg>

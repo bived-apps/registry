@@ -1,0 +1,109 @@
+// OpenCode 2 configuration of a Bive project. Written by hand and kept tight: edit the private paths and the models.
+// Format: https://opencode.ai/v2/docs/config/ — `permissions` (ordered rules, the last match wins), `policies` (hard
+// rules no agent can loosen). Roles: AGENTS.md and .bive/prompts/. Provider fallback: each role's models are listed in
+// order in .bive/models.json; on an error (unreachable, 429, quota) the coordinator restarts the brief on the next.
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // A session opened in this checkout starts as the coordinator (owner, 2026-11-15): OpenCode's own `build` is not a
+  // Bive role, and a session opened only for a question picks another agent (advisor, or none: AGENTS.md › Role).
+  "default_agent": "coordinator",
+
+  // Schedules (#242, owner 2026-11-14): lets a coordinator be woken once when its handed-over pull request is merged
+  // or closed (docs/COORDINATING.md › Be woken when a pull request is merged). Experimental OpenCode API.
+  "experimental": {"schedules": true},
+
+  // MCP servers. A server on another machine runs over SSH (stdio through ssh, see .bive/mcp-ssh.sh and the README);
+  // the host is BIVE_MCP_SSH in the environment, never in this file. Example (a Python server on the owner's machine):
+  // "mcp": {
+  //   "app": {"type": "local", "command": ["sh", ".bive/mcp-ssh.sh",
+  //           "~/app/.venv/bin/python", "-m", "app.mcp_server"]}
+  // },
+
+  // The delegate's agent (#84): DELEGATE.md is its system prompt, which replaces the provider's base prompt; a missing
+  // file becomes an empty prompt without an error. Started with `opencode run --agent delegate` (docs/COORDINATING.md).
+  "agents": {
+    "advisor": {
+      "description": "Read-only answer to a question about the current worktree; advice is not authorization.",
+      "mode": "subagent",
+      "system": "{file:./.bive/prompts/ADVISOR.md}",
+      "permissions": [
+        {"action": "*", "resource": "*", "effect": "deny"},
+        {"action": "read", "resource": "*", "effect": "allow"},
+        {"action": "read", "resource": "~/.ssh/*", "effect": "deny"},
+        {"action": "read", "resource": "*/.ssh/*", "effect": "deny"},
+        {"action": "glob", "resource": "*", "effect": "allow"},
+        {"action": "grep", "resource": "*", "effect": "allow"},
+        {"action": "skill", "resource": "bive-ask-owner", "effect": "allow"},
+        {"action": "external_directory", "resource": "*", "effect": "deny"}
+      ]
+    },
+    "supervisor": {
+      "disabled": true
+    },
+    // Compaction summaries use a free model, whatever the session's model (owner, 2026-11-15; opencode.ai/docs/compaction).
+    "compaction": {
+      "model": "opencode/minimax-m3.1-flash-free"
+    },
+    "delegate": {
+      "description": "Bive delegate: one issue, one worktree; pushes its branch and reports to the coordinator.",
+      "mode": "primary",
+      "system": "{file:./.bive/prompts/DELEGATE.md}",
+      // A delegate never starts agents (AGENTS.md › Roles): no subagent, and no `opencode` command (run, api, serve)
+      // from its shell (#243 research, 2026-11-14; V2 action names, opencode.ai/docs/permissions).
+      "permissions": [
+        {"action": "subagent", "resource": "*", "effect": "deny"},
+        {"action": "shell", "resource": "opencode *", "effect": "deny"}
+      ]
+    },
+    // The coordinator's agent (0.2 part 1, #187): COORDINATOR.md is its system prompt. Agent rules are appended after
+    // the global ones (last match wins), so the two rules below lift the global external_directory deny for the
+    // delegates' worktrees only (the resource is the canonical absolute path, hence the leading `*`); the coordinator
+    // can then run commands and read there without `cd ..` being refused. It gets no edit rule: it never writes
+    // product code, and the guard plugin still refuses its writes outside its own worktree.
+    "coordinator": {
+      "description": "Bive coordinator: splits, briefs, starts delegates, reviews pull requests; never merges or writes product code.",
+      "mode": "primary",
+      "system": "{file:./.bive/prompts/COORDINATOR.md}",
+      "permissions": [
+        {"action": "external_directory", "resource": "*/.worktrees/issue-*", "effect": "allow"},
+        {"action": "external_directory", "resource": "*/.worktrees/issue-*/*", "effect": "allow"}
+      ]
+    }
+  },
+
+  "policies": [
+    {"action": "tool.use", "resource": "shell:rm -rf *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git reset --hard *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git rebase *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git push --force*", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git push -f *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git push * main", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:git push * HEAD:main", "effect": "deny"},
+    // Direct shell merges remain denied. Only the validated, owner-opted-in bive_coordinator_merge tool
+    // may execute a named sub-coordinator merge; no agent may close a PR.
+    {"action": "tool.use", "resource": "shell:gh pr merge *", "effect": "deny"},
+    {"action": "tool.use", "resource": "shell:gh pr close *", "effect": "deny"}
+  ],
+  "permissions": [
+    {"action": "bive.coordinator.merge", "resource": "*", "effect": "ask"},
+    {"action": "shell", "resource": "*", "effect": "allow"},
+    {"action": "shell", "resource": "rm -rf *", "effect": "deny"},
+    {"action": "shell", "resource": "git reset --hard *", "effect": "deny"},
+    {"action": "shell", "resource": "git rebase *", "effect": "deny"},
+    {"action": "shell", "resource": "git push --force*", "effect": "deny"},
+    {"action": "shell", "resource": "git push -f *", "effect": "deny"},
+    {"action": "shell", "resource": "git push * main", "effect": "deny"},
+    {"action": "shell", "resource": "git push * HEAD:main", "effect": "deny"},
+    {"action": "shell", "resource": "gh pr merge *", "effect": "deny"},
+    {"action": "shell", "resource": "gh pr close *", "effect": "deny"},
+    {"action": "read", "resource": "*", "effect": "allow"},
+    {"action": "read", "resource": "~/.ssh/*", "effect": "deny"},
+    {"action": "read", "resource": "*/.ssh/*", "effect": "deny"},
+    // Private paths of this project (its users' data, tokens, datasets): one deny line each.
+    // {"action": "read", "resource": "~/.myapp/*", "effect": "deny"},
+    {"action": "webfetch", "resource": "*", "effect": "allow"},
+    {"action": "websearch", "resource": "*", "effect": "allow"},
+    {"action": "external_directory", "resource": "*", "effect": "deny"}
+  ]
+}
